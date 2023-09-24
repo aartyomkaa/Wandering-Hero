@@ -1,53 +1,143 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Animation;
+using Enemy;
+using GameLogic;
 
-public class Wanderer : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private float _speed;
-
-    private Coroutine _move;
-
-    public void StartMove(Queue<Road> roads)
+    internal class Wanderer : Moveable
     {
-        if (_move != null)
+        [SerializeField] private int _maxHealth;
+
+        private Queue<Vector3> _path = new Queue<Vector3>();
+        private int _currentHealth;
+
+        private int _enemiesDefeated;
+        private bool _hasStar;
+
+        public int Health => _currentHealth;
+        public int MaxHealth => _maxHealth;
+        public int EnemiesDefeated => _enemiesDefeated;
+        public bool HasStar => _hasStar;
+
+        public event Action<int> HealthChanged;
+        public event Action<bool> Moving;
+        public event Action Finished;
+        public event Action Interact;
+        public event Action Restart;
+        public event Action Attack;
+        public event Action Death;
+
+        private void Update()
         {
-            StopCoroutine(_move);
+            if (WandererAnimator.IsPlaying == true)
+                return;
+
+            if (CanMove == false)
+                return;
+
+            if (_path.Count > 0)
+            {
+                Move(CanMove, _path.Dequeue());
+                Moving?.Invoke(CanMove);
+            }
+
+            CanMove = false;
         }
 
-        _move = StartCoroutine(Move(roads));
-    }
-
-    public void Init(Vector3 position)
-    {
-        transform.position = position;
-    }
-
-    private IEnumerator Move(Queue<Road> roads)
-    {
-        while (roads.Count > 0)
+        private void OnTriggerEnter(Collider other)
         {
-            Road road = roads.Dequeue();
+            CanMove = false;
+            Move(CanMove, transform.position);
+            Moving?.Invoke(CanMove);
 
-            if (road != null)
+            RotateTowards(other.transform.position);
+
+            if (other.gameObject.TryGetComponent<Skeleton>(out Skeleton enemy))
             {
-                Vector3 nextPosition = new Vector3(road.transform.position.x, 1, road.transform.position.z);
+                Fight();
+            }
+            else if (other.gameObject.TryGetComponent<InterestTile>(out InterestTile tile))
+            {
+                if (tile is Finish)
+                    Finished?.Invoke();
 
-                while (transform.position != nextPosition)
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, nextPosition, _speed * Time.deltaTime);
+                if (tile is not Finish)
+                    Interact?.Invoke();
 
-                    yield return Time.deltaTime;
-                }
+                if (tile is Heal)
+                    RestoreHealth();
+
+                if (tile is Upgrade)
+                    Upgrade();
+            }
+
+            CanMove = true;
+        }
+
+        public void AddRoad(Vector3 roadPosition)
+        {
+            if (roadPosition != null)
+                _path.Enqueue(roadPosition);
+        }
+
+        public void StartMove(Vector3 endPosition)
+        {
+            _path.Dequeue();
+            CanMove = true;
+        }
+
+        public void Init(Vector3 startPosition)
+        {
+            _enemiesDefeated = 0;
+            _hasStar = false;
+
+            CanMove = false;
+            Moving?.Invoke(CanMove);
+            Move(CanMove, startPosition);
+            _path.Clear();
+
+            transform.position = startPosition + StaticVariables.Offset;
+            transform.rotation = Quaternion.identity;
+
+            _currentHealth = _maxHealth;
+            HealthChanged?.Invoke(_currentHealth);
+            Restart?.Invoke();
+        }
+
+        private void Fight()
+        {
+            _currentHealth--;
+            HealthChanged?.Invoke(_currentHealth);
+
+            if (_currentHealth == 0)
+            {
+                Death?.Invoke();
+                Move(false, transform.position);
+                _path?.Clear();
+            }
+            else
+            {
+                Attack?.Invoke();
+                _enemiesDefeated++;
             }
         }
-    }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.TryGetComponent<InterestTile>(out InterestTile tile))
+        private void RestoreHealth()
         {
+            _currentHealth++;
 
+            if (_currentHealth > MaxHealth)
+                _currentHealth = MaxHealth;
+            else
+                HealthChanged?.Invoke(_currentHealth);
+        }
+
+        private void Upgrade()
+        {
+            _hasStar = true;
         }
     }
 }
