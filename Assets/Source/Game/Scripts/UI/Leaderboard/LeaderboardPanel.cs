@@ -2,6 +2,7 @@ using Agava.YandexGames;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace UI
@@ -42,7 +43,7 @@ namespace UI
 
         private void OnClose()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
+            AudioController.Instance.Play(Constants.StaticVariables.ButtonClickSound);
 
             Closed?.Invoke();
 

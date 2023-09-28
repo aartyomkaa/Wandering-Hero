@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Constants;
 
 namespace UI
 {
@@ -11,6 +12,7 @@ namespace UI
         [SerializeField] private Button _decline;
 
         public Action Decline;
+        public Action Accept;
 
         private void OnEnable()
         {
@@ -30,6 +32,7 @@ namespace UI
 
             PlayerAccount.Authorize();
 
+            Accept?.Invoke();
             Close();
         }
         

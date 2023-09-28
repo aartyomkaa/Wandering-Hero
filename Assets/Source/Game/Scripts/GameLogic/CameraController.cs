@@ -29,8 +29,16 @@ namespace GameLogic
 
         private void OnLevelChanged(Level level)
         {
-            _camera.transform.position = level.CameraPosition;
-            _camera.transform.rotation = level.CameraRotation;
+            if (UnityEngine.Device.Screen.height > UnityEngine.Device.Screen.width)
+            {
+                _camera.transform.position = level.MobilePortretCameraPosition;
+                _camera.transform.rotation = Quaternion.Euler(level.MobilePortretCameraRotation.x, 0, 0);
+            }
+            else
+            {
+                _camera.transform.position = level.CameraPosition;
+                _camera.transform.rotation = level.CameraRotation;
+            }
         }
 
         private void OnInBackgroundChange(bool inBackground)

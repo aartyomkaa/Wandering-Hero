@@ -15,7 +15,10 @@ namespace YandexSDK
 
         private IEnumerator Start()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
             yield return YandexGamesSdk.Initialize(OnInitialized);
+#endif
+            yield return(null);
         }
 
         private void OnInitialized()

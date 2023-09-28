@@ -22,6 +22,9 @@ namespace YandexSDK
 
         protected void OnCloseCallBack(bool state)
         {
+            if (state)
+                return;
+
             Time.timeScale = 1;
 
             AudioController.Instance.Unmute();

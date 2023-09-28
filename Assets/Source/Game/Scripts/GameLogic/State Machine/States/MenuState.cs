@@ -25,6 +25,7 @@ namespace GameLogic
 
             _leaderboardPanel.Closed += OnLeaderboardClose;
             _loginPanel.Decline += OnLeaderboardClose;
+            _loginPanel.Accept += OnLeaderboardClose;
         }
 
         private void OnDisable()
@@ -38,43 +39,34 @@ namespace GameLogic
 
             _leaderboardPanel.Closed -= OnLeaderboardClose;
             _loginPanel.Decline -= OnLeaderboardClose;
+            _loginPanel.Accept -= OnLeaderboardClose;
         }
 
         private void OnSettingsOpen()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
-
             _menuScreen.Close();
             _settingsScreen.Open();
         }
 
         private void OnPlay()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
-
             _menuScreen.Close();
             _map.Reset();
         }
 
         private void OnSettingsClose()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
-
             _settingsScreen.Close();
             _menuScreen.Open();
         }
 
         private void OnLevelChange(int level)
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
-
             _map.SetLevel(level);
         }
 
         private void OnLeaderboardOpen()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
-
             _menuScreen.Close();
             _leaderboardScreen.Open();
         }

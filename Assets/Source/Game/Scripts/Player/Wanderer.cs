@@ -99,7 +99,7 @@ namespace Player
             Move(CanMove, startPosition);
             _path.Clear();
 
-            transform.position = startPosition + StaticVariables.Offset;
+            transform.position = startPosition + Constants.StaticVariables.Offset;
             transform.rotation = Quaternion.identity;
 
             _currentHealth = _maxHealth;

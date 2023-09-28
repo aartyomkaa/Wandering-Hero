@@ -3,15 +3,16 @@ using GameLogic;
 using Player;
 using Constants;
 using Agava.YandexGames;
+using Lean.Localization;
 
 namespace UI
 {
     internal class Score : MonoBehaviour
     {
-        private const string LeaderboardName = "leader";
-
         [SerializeField] private Map _map;
         [SerializeField] private Wanderer _wanderer;
+        [SerializeField] private RoadBuilder _roadBuilder;
+        [SerializeField] private LeanLocalizedText _localization;
         [SerializeField] private Indicator[] _indicators;
 
         private static int _value;
@@ -25,23 +26,16 @@ namespace UI
 
         public void ShowResult()
         {
-            _value = 1;
-
-            if (_map.BattleAmount == _wanderer.EnemiesDefeated)
-                _value++;
-
-            if (_wanderer.HasStar)
-                _value++;
-
-            if (_wanderer.Health == 0)
-                _value = 0;
+            _value = GetScore();
 
             for (int i = 0; i < _value; i++)
             {
                 _indicators[i].gameObject.SetActive(true);
             }
 
+#if UNITY_WEBGL && !UNITY_EDITOR
             SaveScore(_value);
+#endif
         }
 
         public void HideResult()
@@ -55,16 +49,42 @@ namespace UI
 
         private void SaveScore(int value)
         {
-            Leaderboard.GetPlayerEntry(LeaderboardName, response =>
+            Leaderboard.GetPlayerEntry(StaticVariables.LeaderboardName, response =>
             {
                 if (response != null)
                 {
-                    Leaderboard.SetScore(LeaderboardName, response.score += value);
+                    Leaderboard.SetScore(StaticVariables.LeaderboardName, response.score += value);
 
                     PlayerPrefs.SetInt(PlayerPrefsConstants.Record, response.score);
                     PlayerPrefs.Save();
                 }
             });
+        }
+
+        private int GetScore()
+        {
+            int value = 1;
+            _localization.TranslationName = StaticVariables.VictoryText;
+
+            if (_map.BattleAmount == _wanderer.EnemiesDefeated)
+                value++;
+
+            if (_wanderer.HasStar)
+                value++;
+
+            if (_wanderer.Health == 0)
+            {
+                value = 0;
+                _localization.TranslationName = StaticVariables.LoseText;
+            }
+
+            if (_roadBuilder.HasStuck)
+            {
+                value = 0;
+                _localization.TranslationName = StaticVariables.LostText;
+            }
+
+            return value;
         }
     }
 }

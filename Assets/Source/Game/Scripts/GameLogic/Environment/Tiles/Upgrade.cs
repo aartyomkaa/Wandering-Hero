@@ -8,11 +8,16 @@ namespace GameLogic
     {
         [SerializeField] private Indicator _swordTemplate;
 
+        private Camera _camera;
         private Indicator _sword;
 
         private void Start()
         {
-            _sword = Instantiate(_swordTemplate, transform.position + StaticVariables.IndicatorOffset, Quaternion.identity, transform);
+            _camera = Camera.main;
+
+            _sword = Instantiate(_swordTemplate, transform.position + Constants.StaticVariables.IndicatorOffset, Quaternion.identity, transform);
+            Vector3 direction = _camera.transform.position - _sword.transform.position;
+            _sword.transform.rotation = Quaternion.LookRotation(direction);
         }
 
         public override void Restart()

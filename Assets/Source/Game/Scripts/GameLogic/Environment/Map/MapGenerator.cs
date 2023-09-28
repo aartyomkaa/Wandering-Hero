@@ -51,6 +51,7 @@ namespace GameLogic
             {
                 _mapSize = _currentLevel.MapSize;
                 _wallsBuilder.Reset();
+                _wallsBuilder.BuildWalls(_mapSize);
             }
 
             _spawnedTiles = new Tile[_mapSize.x, _mapSize.y];
@@ -67,7 +68,6 @@ namespace GameLogic
                 GenerateTiles();
 
                 _map.Init(_spawnedTiles, _mapSize);
-                _wallsBuilder.BuildWalls(_mapSize);
             }
         }
 
@@ -201,5 +201,7 @@ namespace GameLogic
         public int UpgradeAmount = 1;
         public Vector3 CameraPosition;
         public Quaternion CameraRotation;
+        public Vector3 MobilePortretCameraPosition;
+        public Vector3 MobilePortretCameraRotation;
     }
 }

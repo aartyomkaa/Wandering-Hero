@@ -7,6 +7,7 @@ namespace GameLogic
     internal class PlayToFinished : Transition
     {
         [SerializeField] private Wanderer _wanderer;
+        [SerializeField] private RoadBuilder _roadBuilder;
 
         private float _waitTime = 2.5f;
         private float _elapsedTime = 0;
@@ -19,12 +20,16 @@ namespace GameLogic
 
             _wanderer.Finished += OnFinish;
             _wanderer.Death += OnFinish;
+
+            _roadBuilder.Stuck += OnFinish;
         }
 
         private void OnDisable()
         {
             _wanderer.Finished -= OnFinish;
             _wanderer.Death -= OnFinish;
+
+            _roadBuilder.Stuck -= OnFinish;
         }
 
         private void OnFinish()
@@ -41,7 +46,6 @@ namespace GameLogic
             {
                 NeedTransit = true;
             }
-
         }
 
         private IEnumerator DeathAnimation()

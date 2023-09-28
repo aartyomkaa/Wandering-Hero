@@ -1,11 +1,11 @@
 using Agava.YandexGames;
 using UnityEngine;
+using Constants;
 
 namespace UI
 {
     internal class LeaderboardView : MonoBehaviour
     {
-        private const string LeaderboardName = "leader";
         private const int MaxPlayers = 5;
 
         [SerializeField] private LeaderboardPanel _leaderboardPanel;
@@ -27,7 +27,7 @@ namespace UI
 
         private void LoadPlayerEntry()
         {
-            Leaderboard.GetEntries(LeaderboardName, (result) =>
+            Leaderboard.GetEntries(StaticVariables.LeaderboardName, (result) =>
             {
                 foreach (var entry in result.entries)
                 {
@@ -38,7 +38,7 @@ namespace UI
 
         private void LoadEntries()
         {
-            Leaderboard.GetEntries(LeaderboardName, (result) =>
+            Leaderboard.GetEntries(StaticVariables.LeaderboardName, (result) =>
             {
                 foreach (var entry in result.entries)
                 {

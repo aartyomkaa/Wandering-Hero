@@ -1,4 +1,3 @@
-using Agava.WebUtility;
 using System;
 using UnityEngine;
 
@@ -34,7 +33,7 @@ public class AudioController : MonoBehaviour
             sound.Source.loop = sound.Loop;
         }
 
-        Play(StaticVariables.ThemeSound);
+        Play(Constants.StaticVariables.ThemeSound);
     }
 
     public void Play(string name)
@@ -62,6 +61,7 @@ public class AudioController : MonoBehaviour
         foreach(var sound in _sounds)
         {
             sound.Source.volume = value;
+            PlayerPrefs.SetFloat(Constants.PlayerPrefsConstants.Volume, sound.Volume);
         }
     }
 
@@ -69,7 +69,7 @@ public class AudioController : MonoBehaviour
     {
         foreach(var sound in _sounds)
         {
-            sound.Source.mute = true;
+            sound.Source.volume = 0;
         }
 
         _isMuted = true;
@@ -77,9 +77,14 @@ public class AudioController : MonoBehaviour
 
     public void Unmute()
     {
+        float value = PlayerPrefs.GetFloat(Constants.PlayerPrefsConstants.Volume);
+
         foreach (var sound in _sounds)
         {
-            sound.Source.mute = false;
+            if (value > 1)
+                sound.Source.volume = value;
+            else
+                sound.Source.volume = 100;
         }
 
         _isMuted = false;

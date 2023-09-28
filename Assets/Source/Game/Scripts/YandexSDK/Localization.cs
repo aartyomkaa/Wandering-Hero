@@ -8,6 +8,8 @@ namespace YandexSDK
     {
         private void Awake()
         {
+
+#if UNITY_WEBGL && !UNITY_EDITOR
             switch (YandexGamesSdk.Environment.i18n.lang)
             {
                 case "en":
@@ -28,6 +30,7 @@ namespace YandexSDK
             }
 
             LeanLocalization.UpdateTranslations();
+#endif
         }
     }
 }

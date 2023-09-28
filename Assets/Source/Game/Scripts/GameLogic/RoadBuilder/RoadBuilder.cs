@@ -24,9 +24,13 @@ namespace GameLogic
         private Roadfinder _roadFinder;
 
         private bool _hasFinished;
+        private bool _hasStuck;
+
+        public bool HasStuck => _hasStuck;
 
         public event Action<Vector3, int, int> BuildRoad;
         public event Action<Vector3> Finished;
+        public event Action Stuck;
 
         private void Awake()
         {
@@ -60,16 +64,25 @@ namespace GameLogic
             _roadList.Clear();
             _currentRoad = _road;
             _hasFinished = false;
+            _hasStuck = false;
 
             _currentPosition = new Vector2Int((int)startPos.x, (int)startPos.z);
         }
 
         private void OnMove(Vector2Int direction)
         {
+            if (CanMove(_currentPosition) == false)
+            {
+                Stuck?.Invoke();
+                _hasStuck = true;
+
+                return;
+            }
+
             int nextX = _currentPosition.x + direction.x;
             int nextY = _currentPosition.y + direction.y;
 
-            if (nextX >= 0 && nextX < _mapSize.x && nextY >= 0 && nextY < _mapSize.y && _hasFinished == false)
+            if ((nextX >= 0 && nextX < _mapSize.x) && (nextY >= 0 && nextY < _mapSize.y) && _hasFinished == false)
             {
                 Tile nextTile = _spawnedTiles[nextX, nextY];
 
@@ -110,8 +123,33 @@ namespace GameLogic
                 _currentPosition = new Vector2Int(nextX, nextY);
                 _currentRoad = newRoad;
 
-                _controller.Play(StaticVariables.PlaceRoadSound);
+                _controller.Play(Constants.StaticVariables.PlaceRoadSound);
             }
+        }
+
+        private bool CanMove(Vector2Int position)
+        {
+            int indentRange = 1;
+
+            int startX = Mathf.Max(position.x - indentRange, 0);
+            int endX = Mathf.Min(position.x + indentRange, _mapSize.x - 1);
+
+            int startY = Mathf.Max(position.y - indentRange, 0);
+            int endY = Mathf.Min(position.y + indentRange, _mapSize.y - 1);
+
+            for (int x = startX; x <= endX; x++)
+            {
+                for (int y = startY; y <= endY; y++)
+                {
+                    if (new Vector2Int(x, y) != _currentPosition)
+                    {
+                        if (_spawnedTiles[x, y] is not InterestTile && _spawnedTiles[x, y] is not Road)
+                            return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

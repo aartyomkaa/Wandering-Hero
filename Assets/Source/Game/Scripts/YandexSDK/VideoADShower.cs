@@ -2,7 +2,7 @@ using Agava.YandexGames;
 
 namespace YandexSDK
 {
-    internal sealed class VideoAdShower : AdShower
+    internal class VideoAdShower : AdShower
     {
         public override void Show()
         {

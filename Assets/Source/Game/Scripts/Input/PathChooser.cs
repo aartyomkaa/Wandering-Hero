@@ -23,8 +23,10 @@ namespace GameLogic
 
             _playerInput.Player.Move.performed += ctx => Move();
 
-            if (Device.IsMobile == false)
-                _controller.gameObject.SetActive(false);
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if (Device.IsMobile)
+                _controller.gameObject.SetActive(true);
+#endif
         }
 
         private void OnEnable()
@@ -49,10 +51,13 @@ namespace GameLogic
 
         private void Move()
         {
-            Vector2Int moveDirection = Vector2Int.RoundToInt(_playerInput.Player.Move.ReadValue<Vector2>());
+            if (Time.timeScale == 1)
+            {
+                Vector2Int moveDirection = Vector2Int.RoundToInt(_playerInput.Player.Move.ReadValue<Vector2>());
 
-            if (moveDirection.x == 0 || moveDirection.y == 0)
-                Moved.Invoke(moveDirection);
+                if (moveDirection.x == 0 || moveDirection.y == 0)
+                    Moved.Invoke(moveDirection);
+            }
         }
 
         private void MoveUp()

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UI;
+using YandexSDK;
 
 namespace GameLogic
 {
@@ -7,6 +8,8 @@ namespace GameLogic
     {
         [SerializeField] private PlayScreen _playScreen;
         [SerializeField] private Map _map;
+        [SerializeField] private VideoAdShower _videoAdShower;
+        [SerializeField] private TutorialManager _tutorialManager;
 
         private void OnEnable()
         {
@@ -26,8 +29,10 @@ namespace GameLogic
 
         private void Init()
         {
-            Time.timeScale = 1.0f;
+            if (PlayerPrefs.GetInt(Constants.PlayerPrefsConstants.HasPassedTutorial) == 0)
+                _tutorialManager.OpenNextScreen();
 
+            Time.timeScale = 1.0f;
             _playScreen.Open();
         }
 
@@ -37,14 +42,13 @@ namespace GameLogic
                 AudioController.Instance.Unmute();
             else
                 AudioController.Instance.Mute();
-
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
         }
 
         private void OnRestart()
         {
+            _videoAdShower.Show();
+
             _map.Restart();
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
         }
     }
 }

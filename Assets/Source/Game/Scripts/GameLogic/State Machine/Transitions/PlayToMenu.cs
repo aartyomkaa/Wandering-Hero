@@ -1,22 +1,22 @@
+﻿using UI;
 using UnityEngine;
-using UI;
 
 namespace GameLogic
 {
-    internal class FinishedToMenu : Transition
+    internal class PlayToMenu : Transition
     {
-        [SerializeField] private FinishedScreen _finishedScreen;
+        [SerializeField] private PlayScreen _playScreen;
 
         private void OnEnable()
         {
             NeedTransit = false;
 
-            _finishedScreen.Menu += OnMenu;
+            _playScreen.Menu += OnMenu;
         }
 
         private void OnDisable()
         {
-            _finishedScreen.Menu -= OnMenu;
+            _playScreen.Menu -= OnMenu;
         }
 
         private void OnMenu()

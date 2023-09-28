@@ -14,7 +14,7 @@ namespace GameLogic
         {
             Skeleton randomEnemy = _skeletons[Random.Range(0, _skeletons.Count)];
 
-            _skeleton = Instantiate(randomEnemy, gameObject.transform.position + StaticVariables.Offset, randomEnemy.transform.rotation, transform);
+            _skeleton = Instantiate(randomEnemy, gameObject.transform.position + Constants.StaticVariables.Offset, randomEnemy.transform.rotation, transform);
         }
 
         public override void Restart()

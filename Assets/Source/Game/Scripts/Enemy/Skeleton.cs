@@ -2,6 +2,7 @@
 using UnityEngine;
 using Player;
 using GameLogic;
+using Constants;
 
 namespace Enemy
 {

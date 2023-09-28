@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class Indicator : MonoBehaviour
+    internal class Indicator : MonoBehaviour
     {
         [SerializeField] private Vector3 _maxSize;
         [SerializeField] private Vector3 _minSize;

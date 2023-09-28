@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Player;
+using Constants;
 
 namespace Animation
 {

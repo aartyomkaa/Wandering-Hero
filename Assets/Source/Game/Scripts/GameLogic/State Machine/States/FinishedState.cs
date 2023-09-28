@@ -1,6 +1,7 @@
 using UnityEngine;
 using UI;
 using YandexSDK;
+using Constants;
 
 namespace GameLogic
 {
@@ -9,7 +10,8 @@ namespace GameLogic
         [SerializeField] private FinishedScreen _finishedScreen;
         [SerializeField] private Score _score;
         [SerializeField] private Map _map;
-        [SerializeField] private AdShower _adShower;
+        [SerializeField] private InterstitialAdShower _interstitialAdShower;
+        [SerializeField] private VideoAdShower _videoAdShower;
 
         private void OnEnable()
         {
@@ -29,34 +31,28 @@ namespace GameLogic
 
         private void OnNewGame()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
+            _interstitialAdShower.Show();
 
             _map.Reset();
             _finishedScreen.Close();
             _score.HideResult();
-
-            _adShower.Show();
         }
 
         private void OnRestart()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
+            _videoAdShower.Show();
 
             _map.Restart();
             _finishedScreen.Close();
             _score.HideResult();
-
-            _adShower.Show();
         }
 
         private void OnMenu()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
+            _interstitialAdShower.Show();
 
             _finishedScreen.Close();
             _score.HideResult();
-
-            _adShower.Show();
         }
 
         private void Init()
