@@ -1,17 +1,15 @@
-using Agava.WebUtility;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace GameLogic
 {
-    public class PathChooser : MonoBehaviour
+    internal class InputController : MonoBehaviour
     {
         [SerializeField] private Button _up;
         [SerializeField] private Button _left;
         [SerializeField] private Button _right;
         [SerializeField] private Button _down;
-        [SerializeField] private MobileController _controller;
 
         private PlayerInput _playerInput;
 
@@ -22,11 +20,6 @@ namespace GameLogic
             _playerInput = new PlayerInput();
 
             _playerInput.Player.Move.performed += ctx => Move();
-
-#if UNITY_WEBGL && !UNITY_EDITOR
-            if (Device.IsMobile)
-                _controller.gameObject.SetActive(true);
-#endif
         }
 
         private void OnEnable()

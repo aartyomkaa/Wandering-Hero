@@ -7,10 +7,13 @@ namespace GameLogic
     {
         [SerializeField] protected List<Transition> Transition;
 
+        protected bool IsActive;
+
         public void Enter()
         {
             if (enabled == false)
             {
+                IsActive = true;
                 enabled = true;
 
                 foreach (var transition in Transition)
@@ -29,6 +32,7 @@ namespace GameLogic
                     transition.enabled = false;
                 }
 
+                IsActive = false;
                 enabled = false;
             }
         }

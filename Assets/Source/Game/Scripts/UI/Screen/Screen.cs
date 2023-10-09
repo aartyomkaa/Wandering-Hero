@@ -1,25 +1,28 @@
 using UnityEngine;
 
-public abstract class Screen : MonoBehaviour
+namespace UI
 {
-    [SerializeField] protected CanvasGroup CanvasGroup;
-
-    private void Start()
+    internal abstract class Screen : MonoBehaviour
     {
-        Close();
-    }
+        [SerializeField] protected CanvasGroup CanvasGroup;
 
-    public void Close()
-    {
-        CanvasGroup.alpha = 0f;
-        CanvasGroup.interactable = false;
-        CanvasGroup.blocksRaycasts = false;
-    }
+        private void Start()
+        {
+            Close();
+        }
 
-    public virtual void Open()
-    {
-        CanvasGroup.alpha = 1f;
-        CanvasGroup.interactable = true;
-        CanvasGroup.blocksRaycasts = true;
+        public void Close()
+        {
+            CanvasGroup.alpha = 0f;
+            CanvasGroup.interactable = false;
+            CanvasGroup.blocksRaycasts = false;
+        }
+
+        public virtual void Open()
+        {
+            CanvasGroup.alpha = 1f;
+            CanvasGroup.interactable = true;
+            CanvasGroup.blocksRaycasts = true;
+        }
     }
 }

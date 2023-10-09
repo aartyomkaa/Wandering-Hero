@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace YandexSDK
 {
-    public sealed class Localization : MonoBehaviour
+    internal class Localization : MonoBehaviour
     {
         private void Awake()
         {

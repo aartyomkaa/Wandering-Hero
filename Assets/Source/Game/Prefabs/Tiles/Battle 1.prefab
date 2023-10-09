@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectIndicator: {fileID: 0}
-  _skeletons:
+  _enemies:
   - {fileID: 534754835097229729, guid: 6198cef5a328624478b953c6367d24ee, type: 3}
   - {fileID: 7443386542759520421, guid: 1aec93eb0a81b574daafe00f6305db5f, type: 3}
   - {fileID: 7193497603580901679, guid: 2dba24e3326b3504eb14e87d613cbb7a, type: 3}

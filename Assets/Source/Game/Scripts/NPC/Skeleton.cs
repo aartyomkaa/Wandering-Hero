@@ -1,22 +1,21 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Player;
-using GameLogic;
 using Constants;
+using Audio;
 
-namespace Enemy
+namespace NPC
 {
     [RequireComponent(typeof(BoxCollider))]
     [RequireComponent(typeof(Animator))]
-    internal class Skeleton : Moveable
+    internal class Skeleton : Enemy
     {
         [SerializeField] private float _animationTime;
-
-        private Animator _animator;
 
         private BoxCollider[] _colliders;
         private Quaternion _rotation;
 
+        private Animator _animator;
         private Coroutine _animation;
         private float _animationDuration;
 
@@ -36,7 +35,7 @@ namespace Enemy
             }
         }
 
-        public void Restart()
+        public override void Restart()
         {
             _animator.SetTrigger(StaticVariables.Restart);
             transform.rotation = _rotation;
@@ -47,7 +46,7 @@ namespace Enemy
             }
         }
 
-        private void Interact(Wanderer wanderer)
+        protected override void Interact(Wanderer wanderer)
         {
             foreach (var collider in _colliders)
             {
@@ -65,12 +64,12 @@ namespace Enemy
             AudioController.Instance.Play(StaticVariables.SkeletonAttack);
 
             if (wanderer.Health >= 1)
-                Death();
+                Die();
             else
                 _animator.SetTrigger(StaticVariables.Dance);
         }
 
-        private void Death()
+        private void Die()
         {
             _animator.SetTrigger(StaticVariables.Death);
             StartCoroutine();

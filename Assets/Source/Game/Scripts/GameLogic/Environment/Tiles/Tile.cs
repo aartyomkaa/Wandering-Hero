@@ -6,26 +6,26 @@ namespace GameLogic
     {
         [SerializeField] private SpriteRenderer _selectIndicator;
 
-        protected SpriteRenderer _par = null;
+        protected SpriteRenderer _sprite = null;
 
         protected void OnDisable()
         {
-            if (_par != null)
-                _par.gameObject.SetActive(false);
+            if (_sprite != null)
+                _sprite.gameObject.SetActive(false);
         }
 
         public virtual void Restart()
         {
-            if (_par != null)
-                _par.gameObject.SetActive(false);
+            if (_sprite != null)
+                _sprite.gameObject.SetActive(false);
         }
 
         public virtual void Highlight()
         {
-            if (_par == null)
-                _par = Instantiate(_selectIndicator, gameObject.transform.position + Constants.StaticVariables.SelectOffset, _selectIndicator.transform.rotation, transform);
+            if (_sprite == null)
+                _sprite = Instantiate(_selectIndicator, gameObject.transform.position + Constants.StaticVariables.SelectOffset, _selectIndicator.transform.rotation, transform);
             else
-                _par.gameObject.SetActive(true);
+                _sprite.gameObject.SetActive(true);
         }
     }
 }

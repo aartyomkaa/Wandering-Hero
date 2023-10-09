@@ -8,8 +8,6 @@ namespace GameLogic
 
         private State _currentState;
 
-        public State CurrentState => _currentState;
-
         private void Start()
         {
             Reset(_firstState);

@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 namespace GameLogic
 {
     [RequireComponent(typeof(Map))]
-    public class MapGenerator : MonoBehaviour
+    internal class MapGenerator : MonoBehaviour
     {
         [SerializeField] private InterestTile[] _interestTiles;
         [SerializeField] private List<Tile> _tiles;
@@ -16,11 +16,10 @@ namespace GameLogic
         [SerializeField] private Tile _start;
         [SerializeField] private Tile _end;
 
+        private Map _map;
         private Vector2Int _mapSize;
         private Tile[,] _spawnedTiles;
         private Level _currentLevel;
-
-        private Map _map;
 
         public event Action<Level> LevelChanged;
 
@@ -198,7 +197,7 @@ namespace GameLogic
         public Vector2Int MapSize;
         public int HealAmount;
         public int BattleAmount;
-        public int UpgradeAmount = 1;
+        public int UpgradeAmount;
         public Vector3 CameraPosition;
         public Quaternion CameraRotation;
         public Vector3 MobilePortretCameraPosition;

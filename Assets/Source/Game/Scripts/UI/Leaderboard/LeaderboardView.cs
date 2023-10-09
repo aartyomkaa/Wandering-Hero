@@ -1,55 +1,28 @@
 using Agava.YandexGames;
 using UnityEngine;
-using Constants;
+using System.Collections.Generic;
 
 namespace UI
 {
     internal class LeaderboardView : MonoBehaviour
     {
-        private const int MaxPlayers = 5;
+        [SerializeField] private LeaderboardEntryView _playerViewTemplate;
 
-        [SerializeField] private LeaderboardPanel _leaderboardPanel;
+        private readonly List<LeaderboardEntryView> _leaderboardEntryViews = new();
 
-        public void Init()
+        public void Create(LeaderboardEntryResponse entry)
         {
-            ClearViews();
-
-            LoadData();
+            LeaderboardEntryView view = Instantiate(_playerViewTemplate, transform);
+            view.SetData(entry);
+            _leaderboardEntryViews.Add(view);
         }
 
-        private void LoadData()
+        public void Clear()
         {
-            _leaderboardPanel.Open();
+            foreach (var entry in _leaderboardEntryViews)
+                Destroy(entry.gameObject);
 
-            LoadEntries();
-            LoadPlayerEntry();
-        }
-
-        private void LoadPlayerEntry()
-        {
-            Leaderboard.GetEntries(StaticVariables.LeaderboardName, (result) =>
-            {
-                foreach (var entry in result.entries)
-                {
-                    _leaderboardPanel.Create(entry);
-                }
-            }, null, MaxPlayers);
-        }
-
-        private void LoadEntries()
-        {
-            Leaderboard.GetEntries(StaticVariables.LeaderboardName, (result) =>
-            {
-                foreach (var entry in result.entries)
-                {
-                    _leaderboardPanel.Create(entry);
-                }
-            }, null, MaxPlayers);
-        }
-
-        private void ClearViews()
-        {
-            _leaderboardPanel.Clear();
+            _leaderboardEntryViews.Clear();
         }
     }
 }

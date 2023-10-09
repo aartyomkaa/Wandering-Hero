@@ -2,18 +2,20 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Animation;
-using Enemy;
+using NPC;
 using GameLogic;
 
 namespace Player
 {
+    [RequireComponent(typeof(WandererAnimator))]
     internal class Wanderer : Moveable
     {
         [SerializeField] private int _maxHealth;
 
+        private WandererAnimator _animator;
         private Queue<Vector3> _path = new Queue<Vector3>();
-        private int _currentHealth;
 
+        private int _currentHealth;
         private int _enemiesDefeated;
         private bool _hasStar;
 
@@ -30,9 +32,14 @@ namespace Player
         public event Action Attack;
         public event Action Death;
 
+        private void Start()
+        {
+           _animator = GetComponent<WandererAnimator>(); 
+        }
+
         private void Update()
         {
-            if (WandererAnimator.IsPlaying == true)
+            if (_animator.IsPlaying == true)
                 return;
 
             if (CanMove == false)
@@ -55,17 +62,16 @@ namespace Player
 
             RotateTowards(other.transform.position);
 
-            if (other.gameObject.TryGetComponent<Skeleton>(out Skeleton enemy))
+            if (other.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
             {
                 Fight();
             }
             else if (other.gameObject.TryGetComponent<InterestTile>(out InterestTile tile))
             {
+                Interact?.Invoke();
+
                 if (tile is Finish)
                     Finished?.Invoke();
-
-                if (tile is not Finish)
-                    Interact?.Invoke();
 
                 if (tile is Heal)
                     RestoreHealth();

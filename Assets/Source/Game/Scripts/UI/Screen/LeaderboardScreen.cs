@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UI
 {
-    public class LeaderboardScreen : Screen
+    internal class LeaderboardScreen : Screen
     {
         [SerializeField] private LoginPanel _logInPanel;
-        [SerializeField] private LeaderboardView _leaderboardView;
+        [SerializeField] private LeaderboardPanel _leaderboardPanel;
 
         public override void Open()
         {
@@ -16,7 +16,7 @@ namespace UI
             {
                 PlayerAccount.RequestPersonalProfileDataPermission();
 
-                _leaderboardView.Init();
+                _leaderboardPanel.Init();
             }
             else
             {

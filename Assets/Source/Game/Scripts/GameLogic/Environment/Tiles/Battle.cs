@@ -1,27 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Enemy;
+using NPC;
 
 namespace GameLogic
 {
     internal class Battle : InterestTile
     {
-        [SerializeField] private List<Skeleton> _skeletons;
+        [SerializeField] private List<Enemy> _enemies;
 
-        private Skeleton _skeleton;
+        private Enemy _enemy;
 
         private void Start()
         {
-            Skeleton randomEnemy = _skeletons[Random.Range(0, _skeletons.Count)];
+            Enemy randomEnemy = _enemies[Random.Range(0, _enemies.Count)];
 
-            _skeleton = Instantiate(randomEnemy, gameObject.transform.position + Constants.StaticVariables.Offset, randomEnemy.transform.rotation, transform);
+            _enemy = Instantiate(randomEnemy, gameObject.transform.position + Constants.StaticVariables.Offset, randomEnemy.transform.rotation, transform);
         }
 
         public override void Restart()
         {
-            _skeleton.gameObject.SetActive(true);
+            _enemy.gameObject.SetActive(true);
 
-            _skeleton.Restart();
+            _enemy.Restart();
         }
     }
 }

@@ -1,28 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(RawImage))]
-public class ParalaxBackground : MonoBehaviour
+namespace Background
 {
-    [SerializeField] private float _speed;
-
-    private RawImage _image;
-    private float _imagePositionX;
-
-    private void Start()
+    [RequireComponent(typeof(RawImage))]
+    internal class ParalaxBackground : MonoBehaviour
     {
-        _image = GetComponent<RawImage>();
+        [SerializeField] private float _speed;
 
-        _imagePositionX = _image.uvRect.x;
-    }
+        private RawImage _image;
+        private float _imagePositionX;
 
-    private void Update()
-    {
-        _imagePositionX += _speed * Time.deltaTime;
+        private void Start()
+        {
+            _image = GetComponent<RawImage>();
 
-        if (_imagePositionX > 1)
-            _imagePositionX = 0;
+            _imagePositionX = _image.uvRect.x;
+        }
 
-        _image.uvRect = new Rect(_imagePositionX, 0, _image.uvRect.width, _image.uvRect.height);
+        private void Update()
+        {
+            _imagePositionX += _speed * Time.deltaTime;
+
+            if (_imagePositionX > 1)
+                _imagePositionX = 0;
+
+            _image.uvRect = new Rect(_imagePositionX, 0, _image.uvRect.width, _image.uvRect.height);
+        }
     }
 }

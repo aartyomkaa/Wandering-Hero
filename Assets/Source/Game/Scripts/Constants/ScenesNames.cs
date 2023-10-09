@@ -1,6 +1,6 @@
 namespace Constants
 {
-    public static class ScenesNames
+    internal static class ScenesNames
     {
         public const string MainScene = "MainScene";
     }

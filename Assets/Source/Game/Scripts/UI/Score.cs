@@ -55,8 +55,8 @@ namespace UI
                 {
                     Leaderboard.SetScore(StaticVariables.LeaderboardName, response.score += value);
 
-                    PlayerPrefs.SetInt(PlayerPrefsConstants.Record, response.score);
-                    PlayerPrefs.Save();
+                    UnityEngine.PlayerPrefs.SetInt(Constants.PlayerPrefs.Record, response.score);
+                    UnityEngine.PlayerPrefs.Save();
                 }
             });
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Player;
 using Constants;
+using Audio;
 
 namespace Animation
 {
@@ -16,9 +17,9 @@ namespace Animation
 
         private Coroutine _animation;
         private float _animationDuration;
-        private static bool _isPlaying;
+        private bool _isPlaying;
 
-        public static bool IsPlaying => _isPlaying;
+        public bool IsPlaying => _isPlaying;
 
         private void Awake()
         {

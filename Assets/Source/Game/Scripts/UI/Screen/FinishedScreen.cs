@@ -2,10 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Constants;
+using Audio;
 
 namespace UI
 {
-    public class FinishedScreen : Screen
+    internal class FinishedScreen : Screen
     {
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _newGameButton;

@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Audio;
 
 namespace GameLogic
 {
-    [RequireComponent(typeof(PathChooser))]
-    public class RoadBuilder : MonoBehaviour
+    [RequireComponent(typeof(InputController))]
+    internal class RoadBuilder : MonoBehaviour
     {
         [SerializeField] private Road _road;
         [SerializeField] private List<Road> _roads;
@@ -20,7 +21,7 @@ namespace GameLogic
         private Vector2Int _currentPosition;
         private Road _currentRoad;
 
-        private PathChooser _pathChooser;
+        private InputController _pathChooser;
         private Roadfinder _roadFinder;
 
         private bool _hasFinished;
@@ -34,7 +35,7 @@ namespace GameLogic
 
         private void Awake()
         {
-            _pathChooser = GetComponent<PathChooser>();
+            _pathChooser = GetComponent<InputController>();
         }
 
         private void OnEnable()

@@ -1,6 +1,6 @@
 namespace GameLogic
 {
-    public class Grass : Tile
+    internal class Grass : Tile
     {
         public override void Highlight()
         {

@@ -11,14 +11,14 @@ namespace GameLogic
         private float _startTime;
         private float _journeyLength;
 
-        void Start()
+        private void Start()
         {
             _startTime = Time.time;
 
             _journeyLength = Vector3.Distance(_startPoint, _endPoint);
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             if (transform.position == _endPoint)
                 transform.position = _startPoint;

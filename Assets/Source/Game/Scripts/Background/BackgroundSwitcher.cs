@@ -1,21 +1,25 @@
 using UnityEngine;
 
-public class BackgroundSwitcher : MonoBehaviour
+namespace Background
 {
-    private Background[] _backgrounds;
-
-    private void Awake()
+    internal class BackgroundSwitcher : MonoBehaviour
     {
-        _backgrounds = GetComponentsInChildren<Background>();
-    }
+        private Background[] _backgrounds;
 
-    public void Switch()
-    {
-        foreach (var background in _backgrounds)
+        private void Awake()
         {
-            background.gameObject.SetActive(false);
+            _backgrounds = GetComponentsInChildren<Background>();
         }
 
-        _backgrounds[Random.Range(0, _backgrounds.Length)].gameObject.SetActive(true);
+        public void Switch()
+        {
+            foreach (var background in _backgrounds)
+            {
+                if (background.gameObject.activeSelf)
+                    background.gameObject.SetActive(false);
+            }
+
+            _backgrounds[Random.Range(0, _backgrounds.Length)].gameObject.SetActive(true);
+        }
     }
 }

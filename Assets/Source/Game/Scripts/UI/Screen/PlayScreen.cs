@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Constants;
+using Audio;
+using Background;
 
 namespace UI
 {

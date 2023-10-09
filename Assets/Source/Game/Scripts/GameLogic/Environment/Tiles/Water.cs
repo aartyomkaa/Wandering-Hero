@@ -1,9 +1,7 @@
 namespace GameLogic
 {
-    public class Water : Tile
+    internal class Water : Tile
     {
-        public int Weight => 10;
-
         public override void Highlight()
         {
             base.Highlight();

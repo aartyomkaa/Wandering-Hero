@@ -1,3 +1,4 @@
+﻿using Agava.YandexGames;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -8,6 +9,10 @@ namespace UI
 {
     internal class LeaderboardEntryView : MonoBehaviour
     {
+        private const string AnonymousEn = "Anonymous";
+        private const string AnonymousRu = "Аноним";
+        private const string AnonymousTr = "İsimsiz";
+
         [SerializeField] private TMP_Text _rank;
         [SerializeField] private TMP_Text _playerName;
         [SerializeField] private TMP_Text _score;
@@ -15,7 +20,7 @@ namespace UI
 
         private Coroutine _setImage;
 
-        public void SetData(LeaderboardEntry entry)
+        public void SetData(LeaderboardEntryResponse entry)
         {
             if (entry == null)
                 return;
@@ -23,11 +28,11 @@ namespace UI
             if (_setImage != null)
                 StopCoroutine(_setImage);
             else
-                _setImage = StartCoroutine(SetImage(entry.Picture));
+                _setImage = StartCoroutine(SetImage(entry.player.profilePicture));
 
-            _rank.text = entry.Rank;
-            _playerName.text = entry.Name;
-            _score.text = entry.Score;
+            _playerName.text = SetName(entry.player.publicName);
+            _rank.text = entry.rank.ToString();
+            _score.text = entry.score.ToString();
         }
 
         private IEnumerator SetImage(string url)
@@ -47,6 +52,25 @@ namespace UI
                 Sprite sprite = Sprite.Create(texture, new Rect(0,0,texture.width,texture.height), Vector2.zero);
                 _image.sprite = sprite;
             }      
+        }
+
+        private string SetName(string publicName)
+        {
+            string anon = AnonymousEn;
+
+            if (YandexGamesSdk.Environment.i18n.lang == "ru")
+            {
+                anon = AnonymousRu;
+            }
+            else if (YandexGamesSdk.Environment.i18n.lang == "tr")
+            {
+                anon = AnonymousTr;
+            }
+
+            if (string.IsNullOrEmpty(publicName))
+                publicName = anon;
+
+            return publicName;
         }
     }
 }

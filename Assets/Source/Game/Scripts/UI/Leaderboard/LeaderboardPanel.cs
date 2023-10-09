@@ -1,18 +1,15 @@
 using Agava.YandexGames;
-using System;
-using System.Collections.Generic;
+using Constants;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
+using System;
 
 namespace UI
 {
     internal class LeaderboardPanel : Screen
     {
         [SerializeField] private Button _closeButton;
-        [SerializeField] private LeaderboardEntryView _playerViewTemplate;
-
-        private readonly List<LeaderboardEntryView> _leaderboardEntryViews = new();
+        [SerializeField] private LeaderboardView _leaderboardView;
 
         public Action Closed;
 
@@ -26,24 +23,34 @@ namespace UI
             _closeButton.onClick.RemoveListener(OnClose);
         }
 
-        public void Create(LeaderboardEntryResponse entry)
+        public void Init()
         {
-            LeaderboardEntryView view = Instantiate(_playerViewTemplate, transform);
-            view.SetData(new LeaderboardEntry(entry));
-            _leaderboardEntryViews.Add(view);
+            Open();
+
+            ClearViews();
+
+            LoadEntries();
         }
 
-        public void Clear()
+        private void LoadEntries()
         {
-            foreach (var entry in _leaderboardEntryViews)
-                Destroy(entry.gameObject);
+            Leaderboard.GetEntries(StaticVariables.LeaderboardName, (result) =>
+            {
+                foreach (var entry in result.entries)
+                {
+                    _leaderboardView.Create(entry);
+                }
+            });
+        }
 
-            _leaderboardEntryViews.Clear();
+        private void ClearViews()
+        {
+            _leaderboardView.Clear();
         }
 
         private void OnClose()
         {
-            AudioController.Instance.Play(Constants.StaticVariables.ButtonClickSound);
+            Audio.AudioController.Instance.Play(StaticVariables.ButtonClickSound);
 
             Closed?.Invoke();
 
