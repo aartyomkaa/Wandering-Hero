@@ -19,7 +19,7 @@ namespace Wanderer
         public void Die()
         {
             _animator.Death();
-            _mover.StopMove();
+            _mover.OnDeath();
         }
     }
 }

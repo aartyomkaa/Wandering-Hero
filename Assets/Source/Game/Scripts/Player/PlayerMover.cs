@@ -13,7 +13,7 @@ namespace Wanderer
 
         private float _minPitch = 0.7f;
         private float _maxPitch = 1.1f;
-
+        private bool _isDead = false;
         private Queue<Vector3> _path = new Queue<Vector3>();
 
         private void Start()
@@ -23,7 +23,7 @@ namespace Wanderer
 
         private void Update()
         {
-            if (_animator.IsPlaying == true)
+            if (_animator.IsPlaying || _isDead)
                 return;
 
             if (CanMove == false)
@@ -57,13 +57,6 @@ namespace Wanderer
             CanMove = true;
         }
 
-        public void StopMove()
-        {
-            CanMove = false;
-            Move(CanMove, transform.position);
-            _animator.Walk(CanMove);
-        }
-
         public void AddRoad(Vector3 roadPosition)
         {
             if (roadPosition != null)
@@ -73,6 +66,7 @@ namespace Wanderer
         public void Init(Vector3 startPosition)
         {
             CanMove = false;
+            _isDead = false;
             _animator.Walk(CanMove);
             Move(CanMove, startPosition);
             _path.Clear();
@@ -81,9 +75,22 @@ namespace Wanderer
             transform.rotation = Quaternion.identity;
         }
 
+        public void OnDeath()
+        {
+            StopMove();
+            _isDead = true;
+        }
+
         private void Rotate(Vector3 target)
         {
             RotateTowards(target);
+        }
+
+        private void StopMove()
+        {
+            CanMove = false;
+            Move(CanMove, transform.position);
+            _animator.Walk(CanMove);
         }
     }
 }

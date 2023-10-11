@@ -13459,7 +13459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _victory: {fileID: 1768923595}
-  _defeat: {fileID: 0}
+  _defeat: {fileID: 1768923594}
 --- !u!1 &1770148303
 GameObject:
   m_ObjectHideFlags: 0
