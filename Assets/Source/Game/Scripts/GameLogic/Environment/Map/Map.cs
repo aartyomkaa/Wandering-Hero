@@ -1,4 +1,4 @@
-﻿using Player;
+﻿using Wanderer;
 using UnityEngine;
 
 namespace GameLogic
@@ -7,7 +7,8 @@ namespace GameLogic
     [RequireComponent(typeof(RoadBuilder))]
     internal class Map : MonoBehaviour
     {
-        [SerializeField] private Wanderer _player;
+        [SerializeField] private PlayerMover _playerMover;
+        [SerializeField] private PlayerReseter _playerReseter;
 
         private MapGenerator _mapGenerator;
         private RoadBuilder _roadBuilder;
@@ -61,7 +62,9 @@ namespace GameLogic
             }
 
             _roadBuilder.Init(_spawnedTiles, mapSize, _startPosition);
-            _player.Init(_startPosition);
+            _playerMover.Init(_startPosition);
+
+            _playerReseter.Reset();
         }
 
         public void Reset()
@@ -86,7 +89,9 @@ namespace GameLogic
             }
 
             _roadBuilder.Init(_spawnedTiles, _mapSize, _startPosition);
-            _player.Init(_startPosition);
+            _playerMover.Init(_startPosition);
+
+            _playerReseter.Reset();
         }
 
         public void SetLevel(int level)
@@ -96,7 +101,7 @@ namespace GameLogic
 
         private void OnFinish(Vector3 endPosition)
         {
-            _player.StartMove(endPosition);
+            _playerMover.StartMove(endPosition);
         }
 
         private void PlaceRoad(Vector3 roadPosition, int tilePositionX, int tilePositionY)
@@ -104,7 +109,7 @@ namespace GameLogic
             if (_spawnedTiles[tilePositionX, tilePositionY] is not Finish)
                 _spawnedTiles[tilePositionX, tilePositionY].gameObject.SetActive(false);
 
-            _player.AddRoad(roadPosition);
+            _playerMover.AddRoad(roadPosition);
         }
     }
 }

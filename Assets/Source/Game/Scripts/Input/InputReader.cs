@@ -1,19 +1,18 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace GameLogic
 {
-    internal class InputController : MonoBehaviour
+    internal class InputReader : MonoBehaviour
     {
+        [SerializeField] private RoadBuilder _roadBuilder;
+
         [SerializeField] private Button _up;
         [SerializeField] private Button _left;
         [SerializeField] private Button _right;
         [SerializeField] private Button _down;
 
         private PlayerInput _playerInput;
-
-        public event Action<Vector2Int> Moved;
 
         private void Awake()
         {
@@ -49,28 +48,28 @@ namespace GameLogic
                 Vector2Int moveDirection = Vector2Int.RoundToInt(_playerInput.Player.Move.ReadValue<Vector2>());
 
                 if (moveDirection.x == 0 || moveDirection.y == 0)
-                    Moved.Invoke(moveDirection);
+                    _roadBuilder.Build(moveDirection);
             }
         }
 
         private void MoveUp()
         {
-            Moved.Invoke(new Vector2Int(0, 1));
+            _roadBuilder.Build(new Vector2Int(0, 1));
         }
 
         private void MoveLeft()
         {
-            Moved.Invoke(new Vector2Int(-1, 0));
+            _roadBuilder.Build(new Vector2Int(-1, 0));
         }
 
         private void MoveRight()
         {
-            Moved.Invoke(new Vector2Int(1, 0));
+            _roadBuilder.Build(new Vector2Int(1, 0));
         }
 
         private void MoveDown()
         {
-            Moved.Invoke(new Vector2Int(0, -1));
+            _roadBuilder.Build(new Vector2Int(0, -1));
         }
     }
 }

@@ -1,16 +1,18 @@
 using UnityEngine;
 using GameLogic;
-using Player;
+using Wanderer;
 using Constants;
 using Agava.YandexGames;
 using Lean.Localization;
 
 namespace UI
 {
-    internal class Score : MonoBehaviour
+    internal class ScorePanel : MonoBehaviour
     {
         [SerializeField] private Map _map;
-        [SerializeField] private Wanderer _wanderer;
+        [SerializeField] private PlayerAttacker _playerAttacker;
+        [SerializeField] private PlayerHealth _playerHealth;
+        [SerializeField] private PlayerInteractor _playerInteractor;
         [SerializeField] private RoadBuilder _roadBuilder;
         [SerializeField] private LeanLocalizedText _localization;
         [SerializeField] private Indicator[] _indicators;
@@ -55,8 +57,8 @@ namespace UI
                 {
                     Leaderboard.SetScore(StaticVariables.LeaderboardName, response.score += value);
 
-                    UnityEngine.PlayerPrefs.SetInt(Constants.PlayerPrefs.Record, response.score);
-                    UnityEngine.PlayerPrefs.Save();
+                    PlayerPrefs.SetInt(PlayerSettings.Record, response.score);
+                    PlayerPrefs.Save();
                 }
             });
         }
@@ -66,13 +68,13 @@ namespace UI
             int value = 1;
             _localization.TranslationName = StaticVariables.VictoryText;
 
-            if (_map.BattleAmount == _wanderer.EnemiesDefeated)
+            if (_map.BattleAmount == _playerAttacker.EnemiesDefeated)
                 value++;
 
-            if (_wanderer.HasStar)
+            if (_playerInteractor.HasStar)
                 value++;
 
-            if (_wanderer.Health == 0)
+            if (_playerHealth.Health == 0)
             {
                 value = 0;
                 _localization.TranslationName = StaticVariables.LoseText;

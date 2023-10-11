@@ -50,11 +50,7 @@ namespace UI
 
         private void OnClose()
         {
-            Audio.AudioController.Instance.Play(StaticVariables.ButtonClickSound);
-
             Closed?.Invoke();
-
-            Close();
         }
     }
 }

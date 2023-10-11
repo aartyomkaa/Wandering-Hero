@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Player;
+using Wanderer;
 
 namespace GameLogic
 {
@@ -15,13 +15,13 @@ namespace GameLogic
 
         protected void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.TryGetComponent<Wanderer>(out Wanderer wanderer))
+            if (other.gameObject.TryGetComponent<Player>(out Player wanderer))
             {
                 Interact(wanderer);
             }
         }
 
-        protected virtual void Interact(Wanderer wanderer)
+        protected virtual void Interact(Wanderer.Player wanderer)
         {
             foreach (var collider in _colliders)
             {

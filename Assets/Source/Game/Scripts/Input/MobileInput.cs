@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UI
 {
-    internal class MobileController : MonoBehaviour
+    internal class MobileInput : MonoBehaviour
     {
         private RectTransform _rectTransform;
 

@@ -10,7 +10,7 @@ namespace GameLogic
 
         private int _wallOffset = 2;
         private float _sideOffset = 0.135f;
-        private float _leftWallOffset = 0.9f;
+        private float _leftWallOffset = -0.9f;
 
         public void BuildWalls(Vector2Int mapSize)
         {
@@ -22,7 +22,7 @@ namespace GameLogic
                 }
                 else
                 {
-                    Instantiate(_straightWall, new Vector3(-_leftWallOffset, 1, y), _straightWall.transform.rotation, transform);
+                    Instantiate(_straightWall, new Vector3(_leftWallOffset, 1, y), _straightWall.transform.rotation, transform);
                 }
             }
 

@@ -5,7 +5,7 @@ using Agava.WebUtility;
 
 namespace GameLogic
 {
-    internal class TutorialManager : MonoBehaviour
+    internal class Tutorial : MonoBehaviour
     {
         [SerializeField] private TutorialScreen[] _tutorialScreens;
         [SerializeField] private TutorialScreen _mobileTutorial;
@@ -38,8 +38,10 @@ namespace GameLogic
                 screen.Closed -= OpenNextScreen;
             }
 
+#if UNITY_WEBGL && !UNITY_EDITOR
             if (Device.IsMobile)
                 _mobileTutorial.Closed -= OpenNextScreen;
+#endif
         }
 
         public void OpenNextScreen()
@@ -60,7 +62,7 @@ namespace GameLogic
             _screenIndex = 0;
             _hasPassedTutorial = true;
 
-            PlayerPrefs.SetInt(Constants.PlayerPrefs.HasPassedTutorial, _hasPassedTutorial ? 1 : 0);
+            PlayerPrefs.SetInt(Constants.PlayerSettings.HasPassedTutorial, _hasPassedTutorial ? 1 : 0);
             PlayerPrefs.Save();
 
             Finished?.Invoke();

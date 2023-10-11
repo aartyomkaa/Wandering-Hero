@@ -4,7 +4,7 @@ using UnityEngine;
 namespace GameLogic
 {
     [RequireComponent(typeof(Camera))]
-    internal class CameraController : MonoBehaviour
+    internal class CameraPositioner : MonoBehaviour
     {
         [SerializeField] private MapGenerator _generator;
 

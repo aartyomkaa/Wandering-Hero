@@ -1,4 +1,4 @@
-using Player;
+using Wanderer;
 using System;
 
 namespace GameLogic
@@ -15,7 +15,7 @@ namespace GameLogic
             }
         }
 
-        protected override void Interact(Wanderer wanderer)
+        protected override void Interact(Wanderer.Player wanderer)
         {
             foreach (var collider in _colliders)
             {

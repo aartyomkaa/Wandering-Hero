@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
-using Player;
+using Wanderer;
 
 namespace GameLogic
 {
     internal class PlayToFinished : Transition
     {
-        [SerializeField] private Wanderer _wanderer;
+        [SerializeField] private PlayerInteractor _playerInteractor;
+        [SerializeField] private PlayerHealth _playerHealth;
         [SerializeField] private RoadBuilder _roadBuilder;
 
         private float _waitTime = 2.5f;
@@ -18,23 +19,23 @@ namespace GameLogic
         {
             NeedTransit = false;
 
-            _wanderer.Finished += OnFinish;
-            _wanderer.Death += OnFinish;
+            _playerInteractor.Finished += OnFinish;
+            _playerHealth.Death += OnFinish;
 
             _roadBuilder.Stuck += OnFinish;
         }
 
         private void OnDisable()
         {
-            _wanderer.Finished -= OnFinish;
-            _wanderer.Death -= OnFinish;
+            _playerInteractor.Finished -= OnFinish;
+            _playerHealth.Death -= OnFinish;
 
             _roadBuilder.Stuck -= OnFinish;
         }
 
         private void OnFinish()
         {
-            if (_wanderer.Health == 0)
+            if (_playerHealth.Health == 0)
             {
                 if (_coroutine != null)
                     StopCoroutine(_coroutine);

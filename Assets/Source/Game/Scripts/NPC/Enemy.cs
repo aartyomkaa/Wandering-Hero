@@ -1,12 +1,15 @@
 ﻿using GameLogic;
-using Player;
+using Wanderer;
+using UnityEngine;
 
 namespace NPC
 {
     internal abstract class Enemy : Moveable
     {
+        [SerializeField] protected AudioSource AudioSource;
+
         public abstract void Restart();
 
-        protected abstract void Interact(Wanderer wanderer);
+        protected abstract void Interact(Player wanderer);
     }
 }

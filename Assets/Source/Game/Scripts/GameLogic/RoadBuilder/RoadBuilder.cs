@@ -2,17 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Audio;
 
 namespace GameLogic
 {
-    [RequireComponent(typeof(InputController))]
     internal class RoadBuilder : MonoBehaviour
     {
         [SerializeField] private Road _road;
         [SerializeField] private List<Road> _roads;
-
-        [SerializeField] private AudioController _controller;
+        [SerializeField] private AudioSource _audioSource;
 
         private List<Road> _roadList = new List<Road>();
         private Tile[,] _spawnedTiles;
@@ -20,8 +17,6 @@ namespace GameLogic
         private Vector2Int _mapSize;
         private Vector2Int _currentPosition;
         private Road _currentRoad;
-
-        private InputController _pathChooser;
         private Roadfinder _roadFinder;
 
         private bool _hasFinished;
@@ -32,21 +27,6 @@ namespace GameLogic
         public event Action<Vector3, int, int> BuildRoad;
         public event Action<Vector3> Finished;
         public event Action Stuck;
-
-        private void Awake()
-        {
-            _pathChooser = GetComponent<InputController>();
-        }
-
-        private void OnEnable()
-        {
-            _pathChooser.Moved += OnMove;
-        }
-
-        private void OnDisable()
-        {
-            _pathChooser.Moved -= OnMove;
-        }
 
         public void Init(Tile[,] spawnedTiles, Vector2Int mapSize, Vector3 startPos)
         {
@@ -70,9 +50,9 @@ namespace GameLogic
             _currentPosition = new Vector2Int((int)startPos.x, (int)startPos.z);
         }
 
-        private void OnMove(Vector2Int direction)
+        public void Build(Vector2Int direction)
         {
-            if (CanMove(_currentPosition) == false)
+            if (CanBuild(_currentPosition) == false)
             {
                 Stuck?.Invoke();
                 _hasStuck = true;
@@ -124,11 +104,11 @@ namespace GameLogic
                 _currentPosition = new Vector2Int(nextX, nextY);
                 _currentRoad = newRoad;
 
-                _controller.Play(Constants.StaticVariables.PlaceRoadSound);
+                _audioSource.Play();
             }
         }
 
-        private bool CanMove(Vector2Int position)
+        private bool CanBuild(Vector2Int position)
         {
             int indentRange = 1;
 

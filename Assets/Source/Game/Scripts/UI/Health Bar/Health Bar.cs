@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Player;
+using Wanderer;
 
 namespace UI
 {
     internal class HealthBar : MonoBehaviour
     {
-        [SerializeField] private Wanderer _wanderer;
+        [SerializeField] private PlayerHealth _playerHealth;
         [SerializeField] private Indicator _healthTemplate;
 
         private List<Indicator> _hearts = new List<Indicator>();
@@ -14,7 +14,7 @@ namespace UI
 
         private void OnEnable()
         {
-            _wanderer.HealthChanged += OnHealthChanged;
+            _playerHealth.HealthChanged += OnHealthChanged;
         }
 
         private void Start()
@@ -24,7 +24,7 @@ namespace UI
 
         private void OnDisable()
         {
-            _wanderer.HealthChanged -= OnHealthChanged;
+            _playerHealth.HealthChanged -= OnHealthChanged;
         }
 
         private void OnHealthChanged(int value)
@@ -66,7 +66,7 @@ namespace UI
 
         private void InitHearts()
         {
-            for (int i = 0; i < _wanderer.MaxHealth; i++)
+            for (int i = 0; i < _playerHealth.MaxHealth; i++)
             {
                 var heart = Instantiate(_healthTemplate, transform);
                 _hearts.Add(heart);

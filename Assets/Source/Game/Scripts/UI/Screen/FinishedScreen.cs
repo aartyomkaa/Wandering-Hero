@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Constants;
-using Audio;
 
 namespace UI
 {
@@ -32,19 +30,19 @@ namespace UI
 
         private void OnRestartButtonClick()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
+            ButtonAudio.Play();
             Restart?.Invoke();
         }
 
         private void OnNewGameButtonClick()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
+            ButtonAudio.Play();
             NewGame?.Invoke();
         }
 
         private void OnMenuButtonClick()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
+            ButtonAudio.Play();
             Menu?.Invoke();
         }
     }

@@ -1,6 +1,6 @@
 namespace Constants
 {
-    internal static class PlayerPrefs
+    internal static class PlayerSettings
     {
         public const string Volume = "volume";
         public const string Record = "Record";

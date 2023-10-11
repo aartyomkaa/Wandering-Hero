@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
-using Player;
+using Wanderer;
 using Constants;
-using Audio;
 
 namespace NPC
 {
@@ -29,9 +28,9 @@ namespace NPC
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.TryGetComponent<Wanderer>(out Wanderer wanderer))
+            if (other.gameObject.TryGetComponent<Player>(out Player player))
             {
-                Interact(wanderer);
+                Interact(player);
             }
         }
 
@@ -46,7 +45,7 @@ namespace NPC
             }
         }
 
-        protected override void Interact(Wanderer wanderer)
+        protected override void Interact(Player wanderer)
         {
             foreach (var collider in _colliders)
             {
@@ -55,15 +54,16 @@ namespace NPC
 
             RotateTowards(wanderer.transform.position);
 
-            Attack(wanderer);
+            if (wanderer.TryGetComponent<PlayerHealth>(out PlayerHealth player))
+                Attack(player);
         }
 
-        private void Attack(Wanderer wanderer)
+        private void Attack(PlayerHealth wanderer)
         {
             _animator.SetTrigger(StaticVariables.Attack);
-            AudioController.Instance.Play(StaticVariables.SkeletonAttack);
+            AudioSource.Play();
 
-            if (wanderer.Health >= 1)
+            if (wanderer.Health > 0)
                 Die();
             else
                 _animator.SetTrigger(StaticVariables.Dance);

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UI;
 using YandexSDK;
-using Constants;
 using Audio;
 
 namespace GameLogic
@@ -9,10 +8,11 @@ namespace GameLogic
     internal class FinishedState : State
     {
         [SerializeField] private FinishedScreen _finishedScreen;
-        [SerializeField] private Score _score;
+        [SerializeField] private ScorePanel _score;
         [SerializeField] private Map _map;
         [SerializeField] private InterstitialAdShower _interstitialAdShower;
         [SerializeField] private VideoAdShower _videoAdShower;
+        [SerializeField] private FinishedAudioPlayer _audioPlayer;
 
         private void OnEnable()
         {
@@ -61,10 +61,7 @@ namespace GameLogic
             _finishedScreen.Open();
             _score.ShowResult();
 
-            if (_score.Value > 0)
-                AudioController.Instance.Play(StaticVariables.VictorySound);
-            else
-                AudioController.Instance.Play(StaticVariables.DefeatSound);
+            _audioPlayer.Play(_score.Value > 0);
         }
     }
 }

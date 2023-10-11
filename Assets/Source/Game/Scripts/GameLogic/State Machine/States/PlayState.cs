@@ -1,7 +1,6 @@
 using UnityEngine;
 using UI;
 using YandexSDK;
-using Audio;
 using Agava.WebUtility;
 
 namespace GameLogic
@@ -11,14 +10,13 @@ namespace GameLogic
         [SerializeField] private PlayScreen _playScreen;
         [SerializeField] private Map _map;
         [SerializeField] private VideoAdShower _videoAdShower;
-        [SerializeField] private TutorialManager _tutorialManager;
-        [SerializeField] private MobileController _controller;
+        [SerializeField] private Tutorial _tutorialManager;
+        [SerializeField] private MobileInput _controller;
 
         private void OnEnable()
         {
             Init();
 
-            _playScreen.Mute += OnMute;
             _playScreen.Restart += OnRestart;
 
             _tutorialManager.Finished += OnTutorialFinish;
@@ -26,7 +24,6 @@ namespace GameLogic
 
         private void OnDisable()
         {
-            _playScreen.Mute -= OnMute;
             _playScreen.Restart -= OnRestart;
 
             _tutorialManager.Finished -= OnTutorialFinish;
@@ -36,7 +33,7 @@ namespace GameLogic
 
         private void Init()
         {
-            if (PlayerPrefs.GetInt(Constants.PlayerPrefs.HasPassedTutorial) == 0)
+            if (PlayerPrefs.GetInt(Constants.PlayerSettings.HasPassedTutorial) == 0)
             {
                 _tutorialManager.OpenNextScreen();
             }
@@ -45,14 +42,6 @@ namespace GameLogic
                 Time.timeScale = 1.0f;
                 _playScreen.Open();
             }
-        }
-
-        private void OnMute()
-        {
-            if (AudioController.Instance.IsMuted)
-                AudioController.Instance.Unmute(false);
-            else
-                AudioController.Instance.Mute(false);
         }
 
         private void OnRestart()
@@ -67,10 +56,12 @@ namespace GameLogic
             if (IsActive)
                 _playScreen.Open();
 
+#if UNITY_WEBGL && !UNITY_EDITOR
             if (Device.IsMobile)
             {
                 _controller.gameObject.SetActive(true);
             }
+#endif
         }
     }
 }

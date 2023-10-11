@@ -1,13 +1,14 @@
 using UnityEngine;
-using Audio;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Audio;
 
 namespace YandexSDK
 {
     internal abstract class AdShower : MonoBehaviour
     {
         [SerializeField] private List<Button> _adButtons;
+        [SerializeField] private AuidoMixer _audioMixer;
 
         public abstract void Show();
 
@@ -18,7 +19,7 @@ namespace YandexSDK
             foreach(Button button in _adButtons)
                 button.interactable = false;
 
-            AudioController.Instance.Mute(true);
+            _audioMixer.Mute();
         }
 
         protected void OnCloseCallBack()
@@ -28,7 +29,7 @@ namespace YandexSDK
             foreach (Button button in _adButtons)
                 button.interactable = true;
 
-            AudioController.Instance.Unmute(true);
+            _audioMixer.Unmute();
         }
 
         protected void OnCloseCallBack(bool wasShown)
@@ -41,7 +42,7 @@ namespace YandexSDK
             foreach (Button button in _adButtons)
                 button.interactable = true;
 
-            AudioController.Instance.Unmute(true);
+            _audioMixer.Unmute();
         }
     }
 }

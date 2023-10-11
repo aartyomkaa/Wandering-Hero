@@ -2,8 +2,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Constants;
-using Audio;
 
 namespace UI
 {
@@ -29,7 +27,7 @@ namespace UI
 
         private void OnAccept()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
+            ButtonAudio.Play();
 
             PlayerAccount.Authorize();
 
@@ -39,7 +37,7 @@ namespace UI
         
         private void OnDecline()
         {
-            AudioController.Instance.Play(StaticVariables.ButtonClickSound);
+            ButtonAudio.Play();
 
             Decline?.Invoke();
             Close();
