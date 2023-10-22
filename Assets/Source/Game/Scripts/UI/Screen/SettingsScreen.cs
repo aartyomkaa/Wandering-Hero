@@ -14,14 +14,12 @@ namespace UI
         [SerializeField] private Tutorial _tutorialManager;
         [SerializeField] private SettingsPanel _settingsPanel;
 
-        public event Action<int> OnLevelChange;
         public event Action CloseScreen;
 
         private void OnEnable()
         {
             _closeButton.onClick.AddListener(OnClose);
             _tutorialButton.onClick.AddListener(OnTutorialButtonClick);
-            _levelSlider.onValueChanged.AddListener(OnSliderValueChange);
 
             _tutorialManager.Finished += OnTutorialFinish;
         }
@@ -30,7 +28,6 @@ namespace UI
         {
             _closeButton.onClick.RemoveListener(OnClose);
             _tutorialButton.onClick.RemoveListener(OnTutorialButtonClick);
-            _levelSlider.onValueChanged.RemoveListener(OnSliderValueChange);
 
             _tutorialManager.Finished -= OnTutorialFinish;
         }
@@ -39,13 +36,6 @@ namespace UI
         {
             base.Open();
             _settingsPanel.Open();
-        }
-
-        private void OnSliderValueChange(float value)
-        {
-            ButtonAudio.Play();
-
-            OnLevelChange?.Invoke((int)Math.Round(value, 0));
         }
 
         private void OnClose()

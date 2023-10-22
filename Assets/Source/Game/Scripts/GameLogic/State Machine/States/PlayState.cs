@@ -1,7 +1,6 @@
 using UnityEngine;
 using UI;
 using YandexSDK;
-using Agava.WebUtility;
 
 namespace GameLogic
 {
@@ -11,7 +10,6 @@ namespace GameLogic
         [SerializeField] private Map _map;
         [SerializeField] private VideoAdShower _videoAdShower;
         [SerializeField] private Tutorial _tutorialManager;
-        [SerializeField] private MobileInput _controller;
 
         private void OnEnable()
         {
@@ -55,13 +53,6 @@ namespace GameLogic
         {
             if (IsActive)
                 _playScreen.Open();
-
-#if UNITY_WEBGL && !UNITY_EDITOR
-            if (Device.IsMobile)
-            {
-                _controller.gameObject.SetActive(true);
-            }
-#endif
         }
     }
 }

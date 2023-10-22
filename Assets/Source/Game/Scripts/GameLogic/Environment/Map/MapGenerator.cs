@@ -39,7 +39,7 @@ namespace GameLogic
         {
             if (_levels.Count >= level)
             {
-                _currentLevel = _levels[level - 1];
+                _currentLevel = _levels[level];
                 LevelChanged?.Invoke(_currentLevel);
             }
         }

@@ -50,7 +50,9 @@ namespace GameLogic
 
         private void OnMenu()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
             _interstitialAdShower.Show();
+#endif
 
             _finishedScreen.Close();
             _score.HideResult();

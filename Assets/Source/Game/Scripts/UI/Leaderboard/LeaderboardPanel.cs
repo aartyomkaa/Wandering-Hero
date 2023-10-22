@@ -11,6 +11,8 @@ namespace UI
         [SerializeField] private Button _closeButton;
         [SerializeField] private LeaderboardView _leaderboardView;
 
+        private int _topPlayers = 5;
+
         public Action Closed;
 
         private void OnEnable()
@@ -36,9 +38,9 @@ namespace UI
         {
             Leaderboard.GetEntries(StaticVariables.LeaderboardName, (result) =>
             {
-                foreach (var entry in result.entries)
+                for(int i = 0; i < _topPlayers; i++)
                 {
-                    _leaderboardView.Create(entry);
+                    _leaderboardView.Create(result.entries[i]);
                 }
             });
         }
@@ -50,6 +52,7 @@ namespace UI
 
         private void OnClose()
         {
+            ButtonAudio.Play();
             Closed?.Invoke();
         }
     }

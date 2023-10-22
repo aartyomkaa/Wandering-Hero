@@ -9,6 +9,7 @@ namespace UI
     {
         [SerializeField] private Button _accept;
         [SerializeField] private Button _decline;
+        [SerializeField] private ScorePanel _scorePanel;
 
         public Action Decline;
         public Action Accept;
@@ -30,6 +31,8 @@ namespace UI
             ButtonAudio.Play();
 
             PlayerAccount.Authorize();
+
+            _scorePanel.SetScore();
 
             Accept?.Invoke();
             Close();

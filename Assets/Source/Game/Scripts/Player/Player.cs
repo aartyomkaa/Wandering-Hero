@@ -5,7 +5,7 @@ namespace Wanderer
 {
     [RequireComponent(typeof(PlayerAnimator))]
     [RequireComponent(typeof(PlayerMover))]
-    internal class Player : Moveable
+    internal class Player : MonoBehaviour
     {
         private PlayerMover _mover;
         private PlayerAnimator _animator;

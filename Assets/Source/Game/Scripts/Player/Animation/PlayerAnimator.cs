@@ -45,7 +45,8 @@ namespace Wanderer
         {
             if (other.gameObject.TryGetComponent<InterestTile>(out InterestTile tile))
             {
-                Interact();
+                if (tile is not Finish)
+                    Interact();
             }
             else if (other.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
             {

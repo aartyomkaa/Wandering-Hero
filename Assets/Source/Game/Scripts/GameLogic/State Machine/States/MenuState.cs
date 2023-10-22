@@ -1,5 +1,6 @@
 using UnityEngine;
 using UI;
+using Agava.YandexGames;
 
 namespace GameLogic
 {
@@ -21,11 +22,17 @@ namespace GameLogic
             _menuScreen.Leaderboard += OnLeaderboardOpen;
 
             _settingsScreen.CloseScreen += OnSettingsClose;
-            _settingsScreen.OnLevelChange += OnLevelChange;
 
             _leaderboardPanel.Closed += OnLeaderboardClose;
             _loginPanel.Decline += OnLeaderboardClose;
             _loginPanel.Accept += OnLeaderboardClose;
+        }
+
+        private void Awake()
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            YandexGamesSdk.GameReady();
+#endif
         }
 
         private void OnDisable()
@@ -35,7 +42,6 @@ namespace GameLogic
             _menuScreen.Leaderboard -= OnLeaderboardOpen;
 
             _settingsScreen.CloseScreen -= OnSettingsClose;
-            _settingsScreen.OnLevelChange -= OnLevelChange;
 
             _leaderboardPanel.Closed -= OnLeaderboardClose;
             _loginPanel.Decline -= OnLeaderboardClose;
@@ -58,11 +64,6 @@ namespace GameLogic
         {
             _settingsScreen.Close();
             _menuScreen.Open();
-        }
-
-        private void OnLevelChange(int level)
-        {
-            _map.SetLevel(level);
         }
 
         private void OnLeaderboardOpen()

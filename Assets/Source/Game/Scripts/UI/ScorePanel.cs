@@ -4,6 +4,7 @@ using Wanderer;
 using Constants;
 using Agava.YandexGames;
 using Lean.Localization;
+using System;
 
 namespace UI
 {
@@ -17,13 +18,19 @@ namespace UI
         [SerializeField] private LeanLocalizedText _localization;
         [SerializeField] private Indicator[] _indicators;
 
-        private static int _value;
+        private int _score;
+        private int _value;
 
         public int Value => _value;
 
-        private void OnEnable()
+        public event Action<int> ScoreChanged;
+
+        private void Start()
         {
             HideResult();
+
+            LoadScore();
+            ScoreChanged?.Invoke(_score);
         }
 
         public void ShowResult()
@@ -35,9 +42,15 @@ namespace UI
                 _indicators[i].gameObject.SetActive(true);
             }
 
-#if UNITY_WEBGL && !UNITY_EDITOR
-            SaveScore(_value);
-#endif
+            IncreaseTotalScore(_value);
+
+            SetScore();
+        }
+
+        public void SetScore()
+        {
+            SaveScore(_score);
+            SaveLeaderboardScore(_score);
         }
 
         public void HideResult()
@@ -49,18 +62,11 @@ namespace UI
             }
         }
 
-        private void SaveScore(int value)
+        private void IncreaseTotalScore(int value)
         {
-            Leaderboard.GetPlayerEntry(StaticVariables.LeaderboardName, response =>
-            {
-                if (response != null)
-                {
-                    Leaderboard.SetScore(StaticVariables.LeaderboardName, response.score += value);
+            _score += value;
 
-                    PlayerPrefs.SetInt(PlayerSettings.Record, response.score);
-                    PlayerPrefs.Save();
-                }
-            });
+            ScoreChanged?.Invoke(_score);
         }
 
         private int GetScore()
@@ -87,6 +93,33 @@ namespace UI
             }
 
             return value;
+        }
+
+        private void LoadScore()
+        {
+            if (UnityEngine.PlayerPrefs.HasKey(PlayerSettings.Score))
+            {
+                _score = UnityEngine.PlayerPrefs.GetInt(PlayerSettings.Score);
+            }
+        }
+
+        private void SaveScore(int value)
+        {
+            UnityEngine.PlayerPrefs.SetInt(PlayerSettings.Score, value);
+            UnityEngine.PlayerPrefs.Save();
+        }
+
+        private void SaveLeaderboardScore(int value)
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if (PlayerAccount.IsAuthorized)
+            {
+                Leaderboard.GetPlayerEntry(StaticVariables.LeaderboardName, response =>
+                {
+                    Leaderboard.SetScore(StaticVariables.LeaderboardName, value);
+                });
+            }
+#endif
         }
     }
 }

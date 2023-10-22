@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Background;
+using Agava.WebUtility;
 
 namespace UI
 {
@@ -11,6 +12,8 @@ namespace UI
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _menuButton;
         [SerializeField] private Button _muteButton;
+        [SerializeField] private MobileInput _mobileInput;
+        [SerializeField] private MobileOrientation _orientation;
 
         public event Action Restart;
         public event Action Menu;
@@ -32,6 +35,14 @@ namespace UI
             base.Open();
 
             _background.Switch();
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if (Device.IsMobile)
+            {
+                _orientation.gameObject.SetActive(true);
+                _mobileInput.gameObject.SetActive(true);
+            }
+#endif
         }
 
         private void OnRestartButtonClick()
