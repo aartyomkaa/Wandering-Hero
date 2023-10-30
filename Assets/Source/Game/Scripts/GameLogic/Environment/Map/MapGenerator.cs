@@ -8,14 +8,13 @@ namespace GameLogic
     [RequireComponent(typeof(Map))]
     internal class MapGenerator : MonoBehaviour
     {
-        [SerializeField] private InterestTile[] _interestTiles;
-        [SerializeField] private List<Tile> _tiles;
         [SerializeField] private List<Level> _levels;
         [SerializeField] private WallsBuilder _wallsBuilder;
 
-        [SerializeField] private Tile _start;
-        [SerializeField] private Tile _end;
+        private InterestTile[] _interestTiles;
+        private List<Tile> _tiles = new();
 
+        private MapStyle _mapStyle;
         private Map _map;
         private Vector2Int _mapSize;
         private Tile[,] _spawnedTiles;
@@ -33,6 +32,23 @@ namespace GameLogic
             _currentLevel = _levels[0];
             LevelChanged?.Invoke(_currentLevel);
             _spawnedTiles = new Tile[_mapSize.x, _mapSize.y];
+        }
+
+        public void ChangeStyle(MapStyle style)
+        {
+            _mapStyle = style;
+
+            _interestTiles = new InterestTile[style.GetInterestTileLenght()];
+
+            for (int i = 0; i < _interestTiles.Length; i++)
+            {
+                _interestTiles[i] = style.GetInterestTile(i);
+            }
+
+            for (int i = 0; i < style.GetTilesCount(); i++)
+            {
+                _tiles.Add(style.GetTile(i));
+            }
         }
 
         public void SetLevel(int level)
@@ -74,11 +90,11 @@ namespace GameLogic
         {
             Vector2Int startPosition = new Vector2Int(Random.Range(0, _mapSize.x), 0);
 
-            AddTile(startPosition.x, startPosition.y, _start);
+            AddTile(startPosition.x, startPosition.y, _mapStyle.GetStart());
 
             Vector2Int endPosition = new Vector2Int(0, _mapSize.y - 1);
 
-            AddTile(endPosition.x, endPosition.y, _end);
+            AddTile(endPosition.x, endPosition.y, _mapStyle.GetEnd());
         }
 
         private bool TryGenerateInterestTiles()

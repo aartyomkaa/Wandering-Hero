@@ -8,9 +8,9 @@ namespace GameLogic
     internal class RoadBuilder : MonoBehaviour
     {
         [SerializeField] private Road _road;
-        [SerializeField] private List<Road> _roads;
         [SerializeField] private AudioSource _audioSource;
 
+        private List<Road> _roads = new();
         private List<Road> _roadList = new List<Road>();
         private Tile[,] _spawnedTiles;
 
@@ -27,6 +27,14 @@ namespace GameLogic
         public event Action<Vector3, int, int> BuildRoad;
         public event Action<Vector3> Finished;
         public event Action Stuck;
+
+        public void ChangeStyle(MapStyle style)
+        {
+            for (int i = 0; i < style.GetRoadsCount(); i++)
+            {
+                _roads.Add(style.GetRoad(i));
+            }
+        }
 
         public void Init(Tile[,] spawnedTiles, Vector2Int mapSize, Vector3 startPos)
         {

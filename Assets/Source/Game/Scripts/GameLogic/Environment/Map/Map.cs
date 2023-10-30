@@ -9,6 +9,7 @@ namespace GameLogic
     {
         [SerializeField] private PlayerMover _playerMover;
         [SerializeField] private PlayerReseter _playerReseter;
+        [SerializeField] private MapStyle[] _mapStyles;
 
         private MapGenerator _mapGenerator;
         private RoadBuilder _roadBuilder;
@@ -32,6 +33,12 @@ namespace GameLogic
         {
             _roadBuilder.BuildRoad += PlaceRoad;
             _roadBuilder.Finished += OnFinish;
+        }
+
+        private void Start()
+        {
+            _roadBuilder.ChangeStyle(_mapStyles[0]);
+            _mapGenerator.ChangeStyle(_mapStyles[0]);
         }
 
         private void OnDisable()
