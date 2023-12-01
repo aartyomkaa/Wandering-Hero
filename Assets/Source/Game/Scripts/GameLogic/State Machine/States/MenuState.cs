@@ -1,6 +1,6 @@
-using UnityEngine;
-using UI;
 using Agava.YandexGames;
+using UI;
+using UnityEngine;
 
 namespace GameLogic
 {
@@ -11,15 +11,19 @@ namespace GameLogic
         [SerializeField] private LeaderboardScreen _leaderboardScreen;
         [SerializeField] private LeaderboardPanel _leaderboardPanel;
         [SerializeField] private LoginPanel _loginPanel;
+        [SerializeField] private ShopScreen _shopScreen;
         [SerializeField] private Map _map;
 
         private void OnEnable()
         {
             Init();
 
+            _shopScreen.CloseButtonPressed += OnShopClose;
+
             _menuScreen.Play += OnPlay;
             _menuScreen.Settings += OnSettingsOpen;
             _menuScreen.Leaderboard += OnLeaderboardOpen;
+            _menuScreen.Shop += OnShopOpen;
 
             _settingsScreen.CloseScreen += OnSettingsClose;
 
@@ -37,9 +41,12 @@ namespace GameLogic
 
         private void OnDisable()
         {
+            _shopScreen.CloseButtonPressed -= OnShopClose;
+
             _menuScreen.Play -= OnPlay;
             _menuScreen.Settings -= OnSettingsOpen;
             _menuScreen.Leaderboard -= OnLeaderboardOpen;
+            _menuScreen.Shop -= OnShopOpen;
 
             _settingsScreen.CloseScreen -= OnSettingsClose;
 
@@ -50,32 +57,37 @@ namespace GameLogic
 
         private void OnSettingsOpen()
         {
-            _menuScreen.Close();
             _settingsScreen.Open();
         }
 
         private void OnPlay()
         {
-            _menuScreen.Close();
             _map.Reset();
         }
 
         private void OnSettingsClose()
         {
             _settingsScreen.Close();
-            _menuScreen.Open();
         }
 
         private void OnLeaderboardOpen()
         {
-            _menuScreen.Close();
             _leaderboardScreen.Open();
         }
 
         private void OnLeaderboardClose()
         {
-            _menuScreen.Open();
             _leaderboardScreen.Close();
+        }
+
+        private void OnShopOpen()
+        {
+            _shopScreen.Open();
+        }
+
+        private void OnShopClose()
+        {
+            _shopScreen.Close();
         }
 
         private void Init()

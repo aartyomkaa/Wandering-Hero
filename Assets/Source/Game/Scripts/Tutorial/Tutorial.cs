@@ -1,7 +1,7 @@
-using UI;
-using UnityEngine;
 using System;
 using Agava.WebUtility;
+using UI;
+using UnityEngine;
 
 namespace GameLogic
 {
@@ -19,7 +19,7 @@ namespace GameLogic
         {
             foreach (TutorialScreen screen in _tutorialScreens)
             {
-                screen.Closed += OpenNextScreen;
+                screen.Closed += OnOpenNextScreen;
             }
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -35,7 +35,7 @@ namespace GameLogic
         {
             foreach (TutorialScreen screen in _tutorialScreens)
             {
-                screen.Closed -= OpenNextScreen;
+                screen.Closed -= OnOpenNextScreen;
             }
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -44,7 +44,7 @@ namespace GameLogic
 #endif
         }
 
-        public void OpenNextScreen()
+        public void OnOpenNextScreen()
         {
             if (_screenIndex == _tutorialScreens.Length)
             {

@@ -17,6 +17,7 @@ namespace Constants
         public static Vector3 IndicatorOffset = new Vector3(0, 2, 0);
         public static Vector3 ControllerPosition = new Vector3(800, 437, 0);
         public static Vector3 ControllerPositionVertical = new Vector3(0, 280, 0);
+        public static Vector3[] TileRotations = { new Vector3(0, 90, 0), new Vector3(0, -90, 0), new Vector3(0, 180, 0), new Vector3(0, -180, 0) };
 
         public static string LostText = "Lost";
         public static string LoseText = "Lose";
@@ -24,5 +25,6 @@ namespace Constants
         public static string LeaderboardName = "leader";
 
         public static string MusicVolume = "MusicVolume";
+        public static string Coins = "Coins";
     }
 }

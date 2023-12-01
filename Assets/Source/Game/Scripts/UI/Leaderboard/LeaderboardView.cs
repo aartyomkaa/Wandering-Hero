@@ -1,14 +1,14 @@
+using System.Collections.Generic;
 using Agava.YandexGames;
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace UI
 {
     internal class LeaderboardView : MonoBehaviour
     {
+        private readonly List<LeaderboardEntryView> _leaderboardEntryViews = new ();
+        
         [SerializeField] private LeaderboardEntryView _playerViewTemplate;
-
-        private readonly List<LeaderboardEntryView> _leaderboardEntryViews = new();
 
         public void Create(LeaderboardEntryResponse entry)
         {

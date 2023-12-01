@@ -1,8 +1,8 @@
 using Agava.YandexGames;
 using Constants;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 namespace UI
 {
@@ -38,7 +38,7 @@ namespace UI
         {
             Leaderboard.GetEntries(StaticVariables.LeaderboardName, (result) =>
             {
-                for(int i = 0; i < _topPlayers; i++)
+                for (int i = 0; i < _topPlayers; i++)
                 {
                     _leaderboardView.Create(result.entries[i]);
                 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Shop;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,10 +13,10 @@ namespace GameLogic
         [SerializeField] private WallsBuilder _wallsBuilder;
 
         private InterestTile[] _interestTiles;
-        private List<Tile> _tiles = new();
+        private List<Tile> _tiles = new ();
 
-        private MapStyle _mapStyle;
         private Map _map;
+        private MapStyle _mapStyle;
         private Vector2Int _mapSize;
         private Tile[,] _spawnedTiles;
         private Level _currentLevel;
@@ -37,7 +38,9 @@ namespace GameLogic
         public void ChangeStyle(MapStyle style)
         {
             _mapStyle = style;
+            _wallsBuilder.ChangeStyle(style);
 
+            _tiles.Clear();
             _interestTiles = new InterestTile[style.GetInterestTileLenght()];
 
             for (int i = 0; i < _interestTiles.Length; i++)
@@ -205,18 +208,5 @@ namespace GameLogic
 
             throw new Exception();
         }
-    }
-
-    [System.Serializable]
-    public class Level
-    {
-        public Vector2Int MapSize;
-        public int HealAmount;
-        public int BattleAmount;
-        public int UpgradeAmount;
-        public Vector3 CameraPosition;
-        public Quaternion CameraRotation;
-        public Vector3 MobilePortretCameraPosition;
-        public Vector3 MobilePortretCameraRotation;
     }
 }

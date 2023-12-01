@@ -1,7 +1,7 @@
-using UnityEngine;
-using UI;
-using YandexSDK;
 using Audio;
+using UI;
+using UnityEngine;
+using YandexSDK;
 
 namespace GameLogic
 {
@@ -35,8 +35,7 @@ namespace GameLogic
             _interstitialAdShower.Show();
 
             _map.Reset();
-            _finishedScreen.Close();
-            _score.HideResult();
+            Leave();
         }
 
         private void OnRestart()
@@ -44,8 +43,7 @@ namespace GameLogic
             _videoAdShower.Show();
 
             _map.Restart();
-            _finishedScreen.Close();
-            _score.HideResult();
+            Leave();
         }
 
         private void OnMenu()
@@ -54,8 +52,7 @@ namespace GameLogic
             _interstitialAdShower.Show();
 #endif
 
-            _finishedScreen.Close();
-            _score.HideResult();
+            Leave();
         }
 
         private void Init()
@@ -64,6 +61,12 @@ namespace GameLogic
             _score.ShowResult();
 
             _audioPlayer.Play(_score.Value > 0);
+        }
+
+        private void Leave()
+        {
+            _finishedScreen.Close();
+            _score.HideResult();
         }
     }
 }

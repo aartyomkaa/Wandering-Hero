@@ -1,10 +1,10 @@
-using UnityEngine;
-using GameLogic;
-using Wanderer;
-using Constants;
-using Agava.YandexGames;
-using Lean.Localization;
 using System;
+using Agava.YandexGames;
+using Constants;
+using GameLogic;
+using Lean.Localization;
+using UnityEngine;
+using Wanderer;
 
 namespace UI
 {

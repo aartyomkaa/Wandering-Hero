@@ -1,8 +1,8 @@
 using System;
+using Agava.WebUtility;
+using Background;
 using UnityEngine;
 using UnityEngine.UI;
-using Background;
-using Agava.WebUtility;
 
 namespace UI
 {

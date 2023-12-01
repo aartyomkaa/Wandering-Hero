@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 using NPC;
+using UnityEngine;
 
 namespace GameLogic
 {

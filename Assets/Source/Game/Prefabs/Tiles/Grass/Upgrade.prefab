@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9896db3633ab76a489814f2824fe8f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleSystem: {fileID: 0}
-  _swordTemplate: {fileID: 5341355378937998054, guid: c0607caee0a8da649b536a227f95ffbb, type: 3}
+  _selectIndicator: {fileID: 0}
+  _starTemplate: {fileID: 5341355378937998054, guid: c0607caee0a8da649b536a227f95ffbb, type: 3}
 --- !u!65 &4346622514066829955
 BoxCollider:
   m_ObjectHideFlags: 0

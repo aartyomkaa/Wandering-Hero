@@ -1,12 +1,16 @@
+using System.Collections.Generic;
+using Shop;
 using UnityEngine;
 
 namespace GameLogic
 {
     internal class WallsBuilder : MonoBehaviour
     {
-        [SerializeField] private Wall _straightWall;
-        [SerializeField] private Wall _cornerWallLeft;
-        [SerializeField] private Wall _cornerWallRight;
+        private List<Wall> _walls = new List<Wall>();
+
+        private Wall _straight;
+        private Wall _cornerLeft;
+        private Wall _cornerRight;
 
         private int _wallOffset = 2;
         private float _sideOffset = 0.135f;
@@ -14,15 +18,19 @@ namespace GameLogic
 
         public void BuildWalls(Vector2Int mapSize)
         {
+            _straight = GetWall(WallType.Straight);
+            _cornerLeft = GetWall(WallType.CornerLeft);
+            _cornerRight = GetWall(WallType.CornerRight);
+
             for (int y = 0; y <= mapSize.y; y += _wallOffset)
             {
                 if (y == mapSize.y)
                 {
-                    Instantiate(_cornerWallLeft, new Vector3(_leftWallOffset, 1, y - _sideOffset), _cornerWallLeft.transform.rotation, transform);
+                    Instantiate(_cornerLeft, new Vector3(_leftWallOffset, 1, y - _sideOffset), _cornerLeft.transform.rotation, transform);
                 }
                 else
                 {
-                    Instantiate(_straightWall, new Vector3(_leftWallOffset, 1, y), _straightWall.transform.rotation, transform);
+                    Instantiate(_straight, new Vector3(_leftWallOffset, 1, y), _straight.transform.rotation, transform);
                 }
             }
 
@@ -30,17 +38,27 @@ namespace GameLogic
             {
                 if (y == mapSize.y)
                 {
-                    Instantiate(_cornerWallRight, new Vector3(mapSize.x - _sideOffset, 1, y - _sideOffset), _cornerWallRight.transform.rotation, transform);
+                    Instantiate(_cornerRight, new Vector3(mapSize.x - _sideOffset, 1, y - _sideOffset), _cornerRight.transform.rotation, transform);
                 }
                 else
                 {
-                    Instantiate(_straightWall, new Vector3(mapSize.x - _sideOffset, 1, y), _straightWall.transform.rotation, transform);
+                    Instantiate(_straight, new Vector3(mapSize.x - _sideOffset, 1, y), _straight.transform.rotation, transform);
                 }
             }
 
             for (int x = 0; x < mapSize.x; x += _wallOffset)
             {
-                Instantiate(_straightWall, new Vector3(x, 1, mapSize.y - _sideOffset), Quaternion.identity, transform);
+                Instantiate(_straight, new Vector3(x, 1, mapSize.y - _sideOffset), Quaternion.identity, transform);
+            }
+        }
+
+        public void ChangeStyle(MapStyle style)
+        {
+            _walls.Clear();
+
+            for (int i = 0; i < style.GetWallsLenght(); i++)
+            {
+                _walls.Add(style.GetWall(i));
             }
         }
 
@@ -50,6 +68,17 @@ namespace GameLogic
             {
                 Destroy(child.gameObject);
             }
+        }
+
+        private Wall GetWall(WallType wallType)
+        {
+            foreach(Wall wall in _walls)
+            {
+                if (wall.Type == wallType)
+                    return wall;
+            }
+
+            throw new System.Exception("No walls???");
         }
     }
 }

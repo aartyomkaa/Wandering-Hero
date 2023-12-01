@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Shop;
 using UnityEngine;
 
 namespace GameLogic
@@ -10,7 +11,7 @@ namespace GameLogic
         [SerializeField] private Road _road;
         [SerializeField] private AudioSource _audioSource;
 
-        private List<Road> _roads = new();
+        private List<Road> _roads = new ();
         private List<Road> _roadList = new List<Road>();
         private Tile[,] _spawnedTiles;
 

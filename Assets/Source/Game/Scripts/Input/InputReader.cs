@@ -23,20 +23,20 @@ namespace GameLogic
 
         private void OnEnable()
         {
-            _up.onClick.AddListener(MoveUp);
-            _left.onClick.AddListener(MoveLeft);
-            _right.onClick.AddListener(MoveRight);
-            _down.onClick.AddListener(MoveDown);
+            _up.onClick.AddListener(OnMoveUp);
+            _left.onClick.AddListener(OnMoveLeft);
+            _right.onClick.AddListener(OnMoveRight);
+            _down.onClick.AddListener(OnMoveDown);
 
             _playerInput.Enable();
         }
 
         private void OnDisable()
         {
-            _up.onClick.RemoveListener(MoveUp);
-            _left.onClick.RemoveListener(MoveLeft);
-            _right.onClick.RemoveListener(MoveRight);
-            _down.onClick.RemoveListener(MoveDown);
+            _up.onClick.RemoveListener(OnMoveUp);
+            _left.onClick.RemoveListener(OnMoveLeft);
+            _right.onClick.RemoveListener(OnMoveRight);
+            _down.onClick.RemoveListener(OnMoveDown);
 
             _playerInput.Disable();
         }
@@ -52,22 +52,22 @@ namespace GameLogic
             }
         }
 
-        private void MoveUp()
+        private void OnMoveUp()
         {
             _roadBuilder.Build(new Vector2Int(0, 1));
         }
 
-        private void MoveLeft()
+        private void OnMoveLeft()
         {
             _roadBuilder.Build(new Vector2Int(-1, 0));
         }
 
-        private void MoveRight()
+        private void OnMoveRight()
         {
             _roadBuilder.Build(new Vector2Int(1, 0));
         }
 
-        private void MoveDown()
+        private void OnMoveDown()
         {
             _roadBuilder.Build(new Vector2Int(0, -1));
         }

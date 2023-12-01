@@ -1,6 +1,5 @@
-using Wanderer;
-using UnityEngine;
 using UI;
+using UnityEngine;
 
 namespace GameLogic
 {

@@ -1,6 +1,6 @@
-﻿using GameLogic;
+﻿using System;
+using GameLogic;
 using NPC;
-using System;
 using UnityEngine;
 
 namespace Wanderer

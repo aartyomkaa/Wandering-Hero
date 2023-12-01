@@ -51,7 +51,7 @@ namespace UI
 
             _settingsPanel.Close();
             _tutorialManager.gameObject.SetActive(true);
-            _tutorialManager.OpenNextScreen();
+            _tutorialManager.OnOpenNextScreen();
         }
 
         private void OnTutorialFinish()

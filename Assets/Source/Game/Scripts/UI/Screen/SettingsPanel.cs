@@ -1,5 +1,5 @@
-﻿using GameLogic;
-using System;
+﻿using System;
+using GameLogic;
 using UnityEngine;
 using UnityEngine.UI;
 
