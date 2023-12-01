@@ -206,17 +206,4 @@ namespace GameLogic
             throw new Exception();
         }
     }
-
-    [System.Serializable]
-    public class Level
-    {
-        public Vector2Int MapSize;
-        public int HealAmount;
-        public int BattleAmount;
-        public int UpgradeAmount;
-        public Vector3 CameraPosition;
-        public Quaternion CameraRotation;
-        public Vector3 MobilePortretCameraPosition;
-        public Vector3 MobilePortretCameraRotation;
-    }
 }

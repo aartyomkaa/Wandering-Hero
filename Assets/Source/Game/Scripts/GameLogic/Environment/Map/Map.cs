@@ -31,7 +31,7 @@ namespace GameLogic
 
         private void OnEnable()
         {
-            _roadBuilder.BuildRoad += PlaceRoad;
+            _roadBuilder.BuildRoad += OnPlaceRoad;
             _roadBuilder.Finished += OnFinish;
         }
 
@@ -43,7 +43,7 @@ namespace GameLogic
 
         private void OnDisable()
         {
-            _roadBuilder.BuildRoad -= PlaceRoad;
+            _roadBuilder.BuildRoad -= OnPlaceRoad;
             _roadBuilder.Finished -= OnFinish;
         }
 
@@ -111,7 +111,7 @@ namespace GameLogic
             _playerMover.StartMove(endPosition);
         }
 
-        private void PlaceRoad(Vector3 roadPosition, int tilePositionX, int tilePositionY)
+        private void OnPlaceRoad(Vector3 roadPosition, int tilePositionX, int tilePositionY)
         {
             if (_spawnedTiles[tilePositionX, tilePositionY] is not Finish)
                 _spawnedTiles[tilePositionX, tilePositionY].gameObject.SetActive(false);

@@ -23,7 +23,8 @@ namespace GameLogic
         public virtual void Highlight()
         {
             if (_sprite == null)
-                _sprite = Instantiate(_selectIndicator, gameObject.transform.position + Constants.StaticVariables.SelectOffset, _selectIndicator.transform.rotation, transform);
+                _sprite = Instantiate(_selectIndicator, gameObject.transform.position
+                    + Constants.StaticVariables.SelectOffset, _selectIndicator.transform.rotation, transform);
             else
                 _sprite.gameObject.SetActive(true);
         }

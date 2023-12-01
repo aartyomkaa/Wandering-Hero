@@ -33,7 +33,7 @@ namespace GameLogic
         {
             if (PlayerPrefs.GetInt(Constants.PlayerSettings.HasPassedTutorial) == 0)
             {
-                _tutorialManager.OpenNextScreen();
+                _tutorialManager.OnOpenNextScreen();
             }
             else
             {
