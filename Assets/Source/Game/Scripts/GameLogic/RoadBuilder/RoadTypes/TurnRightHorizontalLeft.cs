@@ -16,6 +16,7 @@ namespace GameLogic
             {
                 return RoadType.TurnLeftVerticalForward;
             }
+
             throw new System.ApplicationException();
         }
     }

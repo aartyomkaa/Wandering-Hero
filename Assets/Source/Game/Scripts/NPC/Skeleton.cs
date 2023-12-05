@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
-using Wanderer;
 using Constants;
+using Wanderer;
 
 namespace NPC
 {

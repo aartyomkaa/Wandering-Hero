@@ -14,7 +14,7 @@ namespace UI
         [SerializeField] private Tutorial _tutorialManager;
         [SerializeField] private SettingsPanel _settingsPanel;
 
-        public event Action CloseScreen;
+        public event Action Closed;
 
         private void OnEnable()
         {
@@ -42,7 +42,7 @@ namespace UI
         {
             ButtonAudio.Play();
 
-            CloseScreen?.Invoke();
+            Closed?.Invoke();
         }
 
         private void OnTutorialButtonClick()

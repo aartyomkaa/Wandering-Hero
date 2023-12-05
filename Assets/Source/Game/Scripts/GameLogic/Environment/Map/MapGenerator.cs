@@ -12,7 +12,7 @@ namespace GameLogic
         [SerializeField] private WallsBuilder _wallsBuilder;
 
         private InterestTile[] _interestTiles;
-        private List<Tile> _tiles = new();
+        private List<Tile> _tiles = new ();
 
         private MapStyle _mapStyle;
         private Map _map;

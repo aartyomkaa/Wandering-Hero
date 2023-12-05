@@ -54,7 +54,7 @@ namespace GameLogic
             {
                 _tutorialScreens[_screenIndex].Open();
                 _screenIndex++;
-            }     
+            }   
         }
 
         private void FinishTutorial()

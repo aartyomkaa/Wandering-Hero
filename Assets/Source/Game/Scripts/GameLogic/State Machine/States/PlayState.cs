@@ -15,14 +15,14 @@ namespace GameLogic
         {
             Init();
 
-            _playScreen.Restart += OnRestart;
+            _playScreen.RestartButtonPressed += OnRestart;
 
             _tutorialManager.Finished += OnTutorialFinish;
         }
 
         private void OnDisable()
         {
-            _playScreen.Restart -= OnRestart;
+            _playScreen.RestartButtonPressed -= OnRestart;
 
             _tutorialManager.Finished -= OnTutorialFinish;
 

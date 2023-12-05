@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Background;
 using Agava.WebUtility;
+using Background;
 
 namespace UI
 {
@@ -15,8 +15,9 @@ namespace UI
         [SerializeField] private MobileInput _mobileInput;
         [SerializeField] private MobileOrientation _orientation;
 
-        public event Action Restart;
-        public event Action Menu;
+        public event Action RestartButtonPressed;
+
+        public event Action MenuButtonPressed;
 
         private void OnEnable()
         {
@@ -48,13 +49,13 @@ namespace UI
         private void OnRestartButtonClick()
         {
             ButtonAudio.Play();
-            Restart?.Invoke();
+            RestartButtonPressed?.Invoke();
         }
 
         private void OnMenuButtonClick()
         {
             ButtonAudio.Play();
-            Menu?.Invoke();
+            MenuButtonPressed?.Invoke();
         }
     }
 }

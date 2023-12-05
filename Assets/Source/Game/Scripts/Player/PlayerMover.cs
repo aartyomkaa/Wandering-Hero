@@ -1,6 +1,6 @@
-﻿using GameLogic;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using GameLogic;
 
 namespace Wanderer
 {
@@ -11,8 +11,6 @@ namespace Wanderer
 
         private PlayerAnimator _animator;
 
-        private float _minPitch = 0.7f;
-        private float _maxPitch = 1.1f;
         private bool _isDead = false;
         private Queue<Vector3> _path = new Queue<Vector3>();
 
@@ -34,7 +32,6 @@ namespace Wanderer
                 Move(CanMove, _path.Dequeue());
                 _animator.Walk(CanMove);
 
-                _audioSource.pitch = Random.Range(_minPitch, _maxPitch);
                 _audioSource.Play();
             }
 

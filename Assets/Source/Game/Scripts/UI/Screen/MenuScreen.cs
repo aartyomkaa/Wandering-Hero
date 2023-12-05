@@ -10,9 +10,11 @@ namespace UI
         [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _leaderboardButton;
 
-        public event Action Play;
-        public event Action Settings;
-        public event Action Leaderboard;
+        public event Action PlayButtonPressed;
+
+        public event Action SettingsButtonPressed;
+
+        public event Action LeaderboardButtonPressed;
 
         private void OnEnable()
         {
@@ -31,19 +33,19 @@ namespace UI
         private void OnPlayButtonClick()
         {
             ButtonAudio.Play();
-            Play?.Invoke();
+            PlayButtonPressed?.Invoke();
         }
 
         private void OnSettingsButtonClick()
         {
             ButtonAudio.Play();
-            Settings?.Invoke();
+            SettingsButtonPressed?.Invoke();
         }
 
         private void OnLeaderboardButtonClick()
         {
             ButtonAudio.Play();
-            Leaderboard?.Invoke();
+            LeaderboardButtonPressed?.Invoke();
         }
     }
 }

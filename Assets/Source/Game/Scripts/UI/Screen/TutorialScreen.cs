@@ -20,11 +20,10 @@ namespace UI
             _close.onClick.RemoveListener(OnClose);
         }
 
-        private void OnClose() 
-        { 
+        private void OnClose()
+        {
             Closed?.Invoke();
             Close();
         }
     }
 }
-

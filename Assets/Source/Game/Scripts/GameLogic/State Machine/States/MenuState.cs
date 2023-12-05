@@ -1,6 +1,6 @@
 using UnityEngine;
-using UI;
 using Agava.YandexGames;
+using UI;
 
 namespace GameLogic
 {
@@ -17,15 +17,15 @@ namespace GameLogic
         {
             Init();
 
-            _menuScreen.Play += OnPlay;
-            _menuScreen.Settings += OnSettingsOpen;
-            _menuScreen.Leaderboard += OnLeaderboardOpen;
+            _menuScreen.PlayButtonPressed += OnPlay;
+            _menuScreen.SettingsButtonPressed += OnSettingsOpen;
+            _menuScreen.LeaderboardButtonPressed += OnLeaderboardOpen;
 
-            _settingsScreen.CloseScreen += OnSettingsClose;
+            _settingsScreen.Closed += OnSettingsClose;
 
             _leaderboardPanel.Closed += OnLeaderboardClose;
-            _loginPanel.Decline += OnLeaderboardClose;
-            _loginPanel.Accept += OnLeaderboardClose;
+            _loginPanel.DeclineButtonPressed += OnLeaderboardClose;
+            _loginPanel.AcceptButtonPressed += OnLeaderboardClose;
         }
 
         private void Awake()
@@ -37,15 +37,15 @@ namespace GameLogic
 
         private void OnDisable()
         {
-            _menuScreen.Play -= OnPlay;
-            _menuScreen.Settings -= OnSettingsOpen;
-            _menuScreen.Leaderboard -= OnLeaderboardOpen;
+            _menuScreen.PlayButtonPressed -= OnPlay;
+            _menuScreen.SettingsButtonPressed -= OnSettingsOpen;
+            _menuScreen.LeaderboardButtonPressed -= OnLeaderboardOpen;
 
-            _settingsScreen.CloseScreen -= OnSettingsClose;
+            _settingsScreen.Closed -= OnSettingsClose;
 
             _leaderboardPanel.Closed -= OnLeaderboardClose;
-            _loginPanel.Decline -= OnLeaderboardClose;
-            _loginPanel.Accept -= OnLeaderboardClose;
+            _loginPanel.DeclineButtonPressed -= OnLeaderboardClose;
+            _loginPanel.AcceptButtonPressed -= OnLeaderboardClose;
         }
 
         private void OnSettingsOpen()

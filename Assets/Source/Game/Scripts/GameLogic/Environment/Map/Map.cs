@@ -1,5 +1,5 @@
-﻿using Wanderer;
-using UnityEngine;
+﻿using UnityEngine;
+using Wanderer;
 
 namespace GameLogic
 {
@@ -31,7 +31,7 @@ namespace GameLogic
 
         private void OnEnable()
         {
-            _roadBuilder.BuildRoad += OnPlaceRoad;
+            _roadBuilder.Building += OnPlaceRoad;
             _roadBuilder.Finished += OnFinish;
         }
 
@@ -43,7 +43,7 @@ namespace GameLogic
 
         private void OnDisable()
         {
-            _roadBuilder.BuildRoad -= OnPlaceRoad;
+            _roadBuilder.Building -= OnPlaceRoad;
             _roadBuilder.Finished -= OnFinish;
         }
 

@@ -9,10 +9,10 @@ namespace GameLogic
         [SerializeField] private float _speed;
         [SerializeField] private float _rotationSpeed;
 
+        protected bool CanMove = false;
+        
         private Coroutine _move;
         private Coroutine _rotate;
-
-        protected bool CanMove = false;
 
         protected void RotateTowards(Vector3 target)
         {

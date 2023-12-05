@@ -1,6 +1,6 @@
-﻿using GameLogic;
-using System;
+﻿using System;
 using UnityEngine;
+using GameLogic;
 
 namespace Wanderer
 {
@@ -8,9 +8,9 @@ namespace Wanderer
     {
         private bool _hasStar;
 
-        public bool HasStar => _hasStar;
-
         public event Action Finished;
+
+        public bool HasStar => _hasStar;
 
         public override void Init()
         {
@@ -28,7 +28,7 @@ namespace Wanderer
                 {
                     AudioSource.Play();
                     Upgrade();
-                }     
+                }
             }
         }
 

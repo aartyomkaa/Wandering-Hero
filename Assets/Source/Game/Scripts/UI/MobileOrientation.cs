@@ -1,6 +1,6 @@
-using Agava.WebUtility;
-using UnityEngine;
 using System;
+using UnityEngine;
+using Agava.WebUtility;
 
 namespace UI
 {
@@ -41,4 +41,3 @@ namespace UI
         }
     }
 }
-

@@ -1,9 +1,9 @@
 ﻿using Agava.YandexGames;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using TMPro;
 
 namespace UI
 {
@@ -48,10 +48,10 @@ namespace UI
             }
             else
             {
-                Texture2D texture = ((DownloadHandlerTexture) request.downloadHandler).texture;
-                Sprite sprite = Sprite.Create(texture, new Rect(0,0,texture.width,texture.height), Vector2.zero);
+                Texture2D texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
                 _image.sprite = sprite;
-            }      
+            }     
         }
 
         private string SetName(string publicName)

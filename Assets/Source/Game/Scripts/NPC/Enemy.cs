@@ -1,6 +1,6 @@
-﻿using GameLogic;
+﻿using UnityEngine;
+using GameLogic;
 using Wanderer;
-using UnityEngine;
 
 namespace NPC
 {

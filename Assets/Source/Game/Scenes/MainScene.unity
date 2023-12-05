@@ -5442,8 +5442,8 @@ RectTransform:
   m_Father: {fileID: 2135752139}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.85714287, y: 0}
-  m_AnchorMax: {x: 0.85714287, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -61, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8931,38 +8931,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels:
-  - MapSize: {x: 6, y: 8}
-    HealAmount: 1
-    BattleAmount: 2
-    UpgradeAmount: 1
-    CameraPosition: {x: 2.5, y: 7, z: -2.3}
-    CameraRotation: {x: 4, y: 0, z: 0, w: 10}
-    MobilePortretCameraPosition: {x: 2.5, y: 10, z: -7.33}
-    MobilePortretCameraRotation: {x: 38, y: 0, z: 0}
-  - MapSize: {x: 8, y: 10}
-    HealAmount: 1
-    BattleAmount: 3
-    UpgradeAmount: 1
-    CameraPosition: {x: 3.5, y: 8, z: -2.5}
-    CameraRotation: {x: 4, y: 0, z: 0, w: 10}
-    MobilePortretCameraPosition: {x: 3.5, y: 12.6, z: -9.87}
-    MobilePortretCameraRotation: {x: 38, y: 0, z: 0}
-  - MapSize: {x: 10, y: 12}
-    HealAmount: 2
-    BattleAmount: 4
-    UpgradeAmount: 1
-    CameraPosition: {x: 4.5, y: 9, z: -2.9}
-    CameraRotation: {x: 4, y: 0, z: 0, w: 10}
-    MobilePortretCameraPosition: {x: 4.5, y: 16.5, z: -12.1}
-    MobilePortretCameraRotation: {x: 38, y: 0, z: 0}
-  - MapSize: {x: 12, y: 14}
-    HealAmount: 3
-    BattleAmount: 5
-    UpgradeAmount: 1
-    CameraPosition: {x: 5.5, y: 10, z: -3}
-    CameraRotation: {x: 4, y: 0, z: 0, w: 10}
-    MobilePortretCameraPosition: {x: 5.5, y: 19, z: -14.6}
-    MobilePortretCameraRotation: {x: 38, y: 0, z: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _wallsBuilder: {fileID: 673927581}
 --- !u!114 &1134949985
 MonoBehaviour:
@@ -10021,7 +9993,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 67, y: -0.000091552734}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

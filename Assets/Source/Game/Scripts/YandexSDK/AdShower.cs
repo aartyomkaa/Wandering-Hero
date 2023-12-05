@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using Audio;
 
@@ -16,8 +16,10 @@ namespace YandexSDK
         {
             Time.timeScale = 0;
 
-            foreach(Button button in _adButtons)
+            foreach (Button button in _adButtons)
+            {
                 button.interactable = false;
+            }
 
             _audioMixer.Mute();
         }
