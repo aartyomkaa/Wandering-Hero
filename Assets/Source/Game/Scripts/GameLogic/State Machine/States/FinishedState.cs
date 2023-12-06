@@ -48,9 +48,7 @@ namespace GameLogic
 
         private void OnMenu()
         {
-#if UNITY_WEBGL && !UNITY_EDITOR
             _interstitialAdShower.Show();
-#endif
 
             Leave();
         }
@@ -60,7 +58,10 @@ namespace GameLogic
             _finishedScreen.Open();
             _score.ShowResult();
 
-            _audioPlayer.Play(_score.Value > 0);
+            if (_score.Value > 0)
+                _audioPlayer.PlayVictory();
+            else
+                _audioPlayer.PlayDefeat();
         }
 
         private void Leave()

@@ -13,7 +13,7 @@ namespace GameLogic
         private bool _hasPassedTutorial;
         private int _screenIndex = 0;
 
-        public Action Finished;
+        public event Action Finished;
 
         private void OnEnable()
         {

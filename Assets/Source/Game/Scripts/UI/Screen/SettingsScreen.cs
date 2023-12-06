@@ -9,8 +9,6 @@ namespace UI
     {
         [SerializeField] private Button _closeButton;
         [SerializeField] private Button _tutorialButton;
-        [SerializeField] private Slider _levelSlider;
-        [SerializeField] private Slider _volumeSlider;
         [SerializeField] private Tutorial _tutorialManager;
         [SerializeField] private SettingsPanel _settingsPanel;
 

@@ -6,6 +6,8 @@ namespace GameLogic
 {
     internal class Battle : InterestTile
     {
+        private static Vector3 Offset = new Vector3(0, 1, 0);
+
         [SerializeField] private List<Enemy> _enemies;
 
         private Enemy _enemy;
@@ -14,7 +16,7 @@ namespace GameLogic
         {
             Enemy randomEnemy = _enemies[Random.Range(0, _enemies.Count)];
 
-            _enemy = Instantiate(randomEnemy, gameObject.transform.position + Constants.StaticVariables.Offset, randomEnemy.transform.rotation, transform);
+            _enemy = Instantiate(randomEnemy, gameObject.transform.position + Offset, randomEnemy.transform.rotation, transform);
         }
 
         public override void Restart()

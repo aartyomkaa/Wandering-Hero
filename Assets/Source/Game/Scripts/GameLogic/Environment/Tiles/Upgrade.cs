@@ -6,6 +6,8 @@ namespace GameLogic
 {
     internal class Upgrade : InterestTile
     {
+        private static Vector3 IndicatorOffset = new Vector3(0, 2, 0);
+
         [SerializeField] private Indicator _swordTemplate;
 
         private Camera _camera;
@@ -15,7 +17,7 @@ namespace GameLogic
         {
             _camera = Camera.main;
 
-            _sword = Instantiate(_swordTemplate, transform.position + Constants.StaticVariables.IndicatorOffset, Quaternion.identity, transform);
+            _sword = Instantiate(_swordTemplate, transform.position + IndicatorOffset, Quaternion.identity, transform);
             Vector3 direction = _camera.transform.position - _sword.transform.position;
             _sword.transform.rotation = Quaternion.LookRotation(direction);
         }

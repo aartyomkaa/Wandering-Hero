@@ -8,7 +8,7 @@ namespace UI
     {
         [SerializeField] private Button _close;
 
-        public Action Closed;
+        public event Action Closed;
 
         private void OnEnable()
         {

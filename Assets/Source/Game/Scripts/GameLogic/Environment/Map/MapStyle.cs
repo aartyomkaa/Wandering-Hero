@@ -13,19 +13,19 @@ namespace GameLogic
         [SerializeField] private Tile _start;
         [SerializeField] private Tile _end;
 
-        public int GetInterestTileLenght() 
-        { 
-            return _interestTiles.Length; 
+        public int GetInterestTileLenght()
+        {
+            return _interestTiles.Length;
         }
 
-        public int GetTilesCount() 
-        { 
-            return _tiles.Count; 
+        public int GetTilesCount()
+        {
+            return _tiles.Count;
         }
 
-        public int GetRoadsCount() 
-        { 
-            return _roads.Count; 
+        public int GetRoadsCount()
+        {
+            return _roads.Count;
         }
 
         public InterestTile GetInterestTile(int index)
@@ -50,7 +50,7 @@ namespace GameLogic
 
         public Tile GetEnd()
         {
-            return _start;
+            return _end;
         }
     }
 }

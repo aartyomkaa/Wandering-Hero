@@ -14,12 +14,19 @@ namespace GameLogic
         [SerializeField] private Vector3 _mobilePortretCameraRotation;
 
         public Vector2Int MapSize => _mapSize;
+
         public int HealAmount => _healAmount;
+
         public int BattleAmount => _battleAmount;
+
         public int UpgradeAmount => _upgradeAmount;
+
         public Vector3 CameraPosition => _cameraPosition;
+
         public Quaternion CameraRotation => _cameraRotation;
+
         public Vector3 MobilePortretCameraPosition => _mobilePortretCameraPosition;
-        public Vector3 MobilePortretCameraRotation => _mobilePortretCameraRotation; 
+
+        public Vector3 MobilePortretCameraRotation => _mobilePortretCameraRotation;
     }
 }

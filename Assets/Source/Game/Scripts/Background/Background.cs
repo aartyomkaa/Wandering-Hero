@@ -2,5 +2,6 @@ using UnityEngine;
 
 namespace Background
 {
-    internal class Background : MonoBehaviour { }
+    internal class Background : MonoBehaviour 
+    { }
 }

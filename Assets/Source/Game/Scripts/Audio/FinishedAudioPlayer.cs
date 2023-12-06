@@ -7,12 +7,14 @@ namespace Audio
         [SerializeField] private AudioSource _victory;
         [SerializeField] private AudioSource _defeat;
 
-        public void Play(bool victory)
+        public void PlayVictory()
         {
-            if (victory)
-                _victory.Play();
-            else
-                _defeat.Play();
+            _victory.Play();
+        }
+
+        public void PlayDefeat()
+        {
+            _defeat.Play();
         }
     }
 }

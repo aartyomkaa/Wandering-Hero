@@ -51,7 +51,7 @@ namespace UI
                 Texture2D texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
                 Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
                 _image.sprite = sprite;
-            }     
+            }
         }
 
         private string SetName(string publicName)

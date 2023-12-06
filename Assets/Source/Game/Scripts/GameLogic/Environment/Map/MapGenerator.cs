@@ -194,16 +194,20 @@ namespace GameLogic
 
         private int GetTileAmount(Level level, InterestTile tile)
         {
-            if (tile is Heal)
-                return level.HealAmount;
+            switch (tile)
+            {
+                case Upgrade:
+                    return level.UpgradeAmount;
 
-            if (tile is Battle)
-                return level.BattleAmount;
+                case Heal:
+                    return level.HealAmount;
 
-            if (tile is Upgrade)
-                return level.UpgradeAmount;
+                case Battle:
+                    return level.BattleAmount;
 
-            throw new Exception();
+                default:
+                    throw new Exception();
+            }
         }
     }
 }

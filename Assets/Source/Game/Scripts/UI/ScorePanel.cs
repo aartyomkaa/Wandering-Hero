@@ -21,9 +21,9 @@ namespace UI
         private int _score;
         private int _value;
 
-        public int Value => _value;
-
         public event Action<int> ScoreChanged;
+
+        public int Value => _value;
 
         private void Start()
         {

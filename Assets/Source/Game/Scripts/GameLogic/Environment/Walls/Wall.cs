@@ -2,5 +2,6 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    internal class Wall : MonoBehaviour { }
+    internal class Wall : MonoBehaviour 
+    { }
 }

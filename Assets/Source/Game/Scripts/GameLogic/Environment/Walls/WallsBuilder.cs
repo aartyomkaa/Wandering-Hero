@@ -19,21 +19,11 @@ namespace GameLogic
                 if (y == mapSize.y)
                 {
                     Instantiate(_cornerWallLeft, new Vector3(_leftWallOffset, 1, y - _sideOffset), _cornerWallLeft.transform.rotation, transform);
-                }
-                else
-                {
-                    Instantiate(_straightWall, new Vector3(_leftWallOffset, 1, y), _straightWall.transform.rotation, transform);
-                }
-            }
-
-            for (int y = 0; y <= mapSize.y; y += _wallOffset)
-            {
-                if (y == mapSize.y)
-                {
                     Instantiate(_cornerWallRight, new Vector3(mapSize.x - _sideOffset, 1, y - _sideOffset), _cornerWallRight.transform.rotation, transform);
                 }
                 else
                 {
+                    Instantiate(_straightWall, new Vector3(_leftWallOffset, 1, y), _straightWall.transform.rotation, transform);
                     Instantiate(_straightWall, new Vector3(mapSize.x - _sideOffset, 1, y), _straightWall.transform.rotation, transform);
                 }
             }

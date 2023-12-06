@@ -6,6 +6,8 @@ namespace GameLogic
 {
     internal class Heal : InterestTile
     {
+        private static Vector3 IndicatorOffset = new Vector3(0, 2, 0);
+
         [SerializeField] private Indicator _heartTemplate;
 
         private Camera _camera;
@@ -15,7 +17,7 @@ namespace GameLogic
         {
             _camera = Camera.main;
 
-            _heart = Instantiate(_heartTemplate, transform.position + Constants.StaticVariables.IndicatorOffset, Quaternion.identity, transform);
+            _heart = Instantiate(_heartTemplate, transform.position + IndicatorOffset, Quaternion.identity, transform);
             Vector3 direction = _camera.transform.position - _heart.transform.position;
             _heart.transform.rotation = Quaternion.LookRotation(-direction);
         }

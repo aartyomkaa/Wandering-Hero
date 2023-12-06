@@ -11,12 +11,11 @@ namespace Audio
 
         private float _minVolume = -80;
         private float _maxVolume = 0;
-
-        public bool IsMuted => _isMuted;
-
         private bool _isMuted = false;
 
         public event Action<bool> Muted;
+
+        public bool IsMuted => _isMuted;
 
         public void ChangeVolume(float volume)
         {

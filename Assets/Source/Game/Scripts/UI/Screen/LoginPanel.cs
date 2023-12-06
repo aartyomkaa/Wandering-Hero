@@ -11,9 +11,9 @@ namespace UI
         [SerializeField] private Button _decline;
         [SerializeField] private ScorePanel _scorePanel;
 
-        public Action DeclineButtonPressed;
+        public event Action DeclineButtonPressed;
 
-        public Action AcceptButtonPressed;
+        public event Action AcceptButtonPressed;
 
         private void OnEnable()
         {

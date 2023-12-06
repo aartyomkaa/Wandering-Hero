@@ -7,6 +7,8 @@ namespace Wanderer
     [RequireComponent(typeof(PlayerAnimator))]
     internal class PlayerMover : Moveable
     {
+        private static Vector3 Offset = new Vector3(0, 1, 0);
+
         [SerializeField] private AudioSource _audioSource;
 
         private PlayerAnimator _animator;
@@ -68,7 +70,7 @@ namespace Wanderer
             Move(CanMove, startPosition);
             _path.Clear();
 
-            transform.position = startPosition + Constants.StaticVariables.Offset;
+            transform.position = startPosition + Offset;
             transform.rotation = Quaternion.identity;
         }
 

@@ -13,7 +13,7 @@ namespace UI
 
         private int _topPlayers = 5;
 
-        public Action Closed;
+        public event Action Closed;
 
         private void OnEnable()
         {
