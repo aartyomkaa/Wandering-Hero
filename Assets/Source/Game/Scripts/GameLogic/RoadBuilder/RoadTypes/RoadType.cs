@@ -11,5 +11,5 @@
     TurnLeftHorizontalLeft,
     TurnRightHorizontalLeft,
     TurnLeftHorizontalRight,
-    TurnRightHorizontalRight
+    TurnRightHorizontalRight,
 }

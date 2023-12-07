@@ -26,7 +26,8 @@ namespace GameLogic
         {
             if (Sprite == null)
             {
-                Sprite = Instantiate(_selectIndicator,
+                Sprite = Instantiate(
+                    _selectIndicator,
                     transform.position + SelectOffset,
                     _selectIndicator.transform.rotation,
                     transform);

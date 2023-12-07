@@ -11,9 +11,9 @@ namespace UI
         [SerializeField] private Button _menuButton;
 
         public event Action RestartButtonPressed;
-        
+
         public event Action NewGameButtonPressed;
-        
+
         public event Action MenuButtonPressed;
 
         private void OnEnable()
