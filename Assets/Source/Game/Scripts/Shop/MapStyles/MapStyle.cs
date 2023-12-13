@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using GameLogic;
 using UnityEngine;
-using UnityEngine.UI;
+using GameLogic;
 
 namespace Shop
 {

@@ -2,9 +2,19 @@
 
 namespace Wanderer
 {
+    [RequireComponent(typeof(PlayerAttacker))]
+    [RequireComponent(typeof(PlayerInteractor))]
+    [RequireComponent(typeof(PlayerHealth))]
+    [RequireComponent(typeof(PlayerAnimator))]
     internal class PlayerReseter : MonoBehaviour
     {
-        [SerializeField] private PlayerComponent[] _playerComponents;
+        private PlayerComponent[] _playerComponents;
+
+        private void Awake()
+        {
+            _playerComponents = GetComponents<PlayerComponent>();
+
+        }
 
         public void Reset()
         {

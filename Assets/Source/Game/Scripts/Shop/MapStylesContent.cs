@@ -35,7 +35,6 @@ namespace Shop
             if (_scrollIndex != _mapStyles.Length - 1)
             {
                 _scrollIndex++;
-
                 _selectedItem = _mapStyles[_scrollIndex];
             }
 

@@ -65,12 +65,9 @@ namespace GameLogic
 
         public void Reset()
         {
-            if (_mapSize != _currentLevel.MapSize)
-            {
-                _mapSize = _currentLevel.MapSize;
-                _wallsBuilder.Reset();
-                _wallsBuilder.BuildWalls(_mapSize);
-            }
+            _mapSize = _currentLevel.MapSize;
+            _wallsBuilder.Reset();
+            _wallsBuilder.BuildWalls(_mapSize);
 
             _spawnedTiles = new Tile[_mapSize.x, _mapSize.y];
 

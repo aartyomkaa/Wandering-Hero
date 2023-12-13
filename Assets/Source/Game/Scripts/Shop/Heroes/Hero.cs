@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Shop
 {
-    internal class Hero : MonoBehaviour,IItem
+    internal class Hero : MonoBehaviour, IItem
     {
         [SerializeField] private Sprite _image;
         [SerializeField] private int _price;

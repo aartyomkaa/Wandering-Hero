@@ -1,5 +1,5 @@
-﻿using Shop;
-using UnityEngine;
+﻿using UnityEngine;
+using Shop;
 using Wanderer;
 
 namespace GameLogic

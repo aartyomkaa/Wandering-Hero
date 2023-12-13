@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,7 +30,7 @@ namespace Shop
         public virtual void ScrollLeft()
         {
             if (_scrollRect.horizontalNormalizedPosition >= 0 && _canScroll)
-                StartCoroutine(-1); 
+                StartCoroutine(-1);
         }
 
         public virtual void ScrollRight()
@@ -54,9 +53,12 @@ namespace Shop
 
         private IEnumerator Scroll(int direction)
         {
-            float contentLength = 1.0f / (_images.Count - 1);
-            float targetPosition = _scrollRect.horizontalNormalizedPosition + contentLength * direction;
+            float targetPosition = (float)_scrollIndex / (_images.Count - 1);
             float startPosition = _scrollRect.horizontalNormalizedPosition;
+
+            Debug.Log(_scrollIndex);
+            Debug.Log(targetPosition);
+            Debug.Log(_scrollRect.horizontalNormalizedPosition);
 
             _canScroll = false;
 
@@ -68,9 +70,10 @@ namespace Shop
                 _scrollRect.horizontalNormalizedPosition = Mathf.Lerp(startPosition, targetPosition, elapsedTime / _scrollDuration);
                 elapsedTime += fixedTimeStep;
 
-                yield return null; // or yield return new WaitForEndOfFrame();
+                yield return null;
             }
 
+            Debug.Log(_scrollRect.horizontalNormalizedPosition);
             _scrollRect.horizontalNormalizedPosition = targetPosition;
             _canScroll = true;
         }

@@ -23,7 +23,6 @@ namespace Shop
         {
             if (_scrollIndex != 0)
             {
-
                 _scrollIndex--;
                 _selectedItem = _heroes[_scrollIndex];
             }

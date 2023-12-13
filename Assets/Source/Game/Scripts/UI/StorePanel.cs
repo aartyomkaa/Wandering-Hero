@@ -9,6 +9,7 @@ namespace UI
     {
         [SerializeField] private MapStylesContent _mapContent;
         [SerializeField] private HeroesContent _heroesContent;
+        [SerializeField] private ScrollRect _scrollRect;
 
         [SerializeField] private Button _buyButton;
         [SerializeField] private Button _selectButton;
@@ -35,7 +36,8 @@ namespace UI
         {
             _store = GetComponent<Store>();
 
-            _selectedContent = _mapContent;
+            _selectedContent = _heroesContent;
+            _scrollRect.content = GetRectTransform(_selectedContent);
             _selectedItem = _selectedContent.GetSelectedItem();
         }
 
@@ -97,6 +99,8 @@ namespace UI
             _mapContent.gameObject.SetActive(false);
             _heroesContent.gameObject.SetActive(true);
             _selectedContent = _heroesContent;
+
+            _scrollRect.content = GetRectTransform(_selectedContent);
         }
 
         private void OnMapStylesButtonClick()
@@ -105,12 +109,22 @@ namespace UI
             _heroesContent.gameObject.SetActive(false);
             _mapContent.gameObject.SetActive(true);
             _selectedContent = _mapContent;
+
+            _scrollRect.content = GetRectTransform(_selectedContent);
         }
 
         private void OnSelectButtonClick()
         {
             ButtonAudio.Play();
             _store.ProceedToSelect(_selectedItem);
+        }
+
+        private RectTransform GetRectTransform(Content content)
+        {
+            if (content.gameObject.TryGetComponent<RectTransform>(out RectTransform transform))
+                return transform;
+
+            throw new System.Exception();
         }
     }
 }
