@@ -1,7 +1,11 @@
-﻿using GameLogic;
-using System;
+﻿using System;
+<<<<<<< HEAD
+=======
+using GameLogic;
+>>>>>>> NewPatch
 using UnityEngine;
 using UnityEngine.UI;
+using GameLogic;
 
 namespace UI
 {
@@ -32,7 +36,7 @@ namespace UI
             {
                 _slider.value = _sliderMaxLevel;
             }
-            else 
+            else
             {
                 ButtonAudio.Play();
                 _map.SetLevel((int)Math.Round(level, 0));

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Shop;
 using UnityEngine;
 
 namespace GameLogic
@@ -10,7 +11,7 @@ namespace GameLogic
         [SerializeField] private Road _road;
         [SerializeField] private AudioSource _audioSource;
 
-        private List<Road> _roads = new();
+        private List<Road> _roads = new ();
         private List<Road> _roadList = new List<Road>();
         private Tile[,] _spawnedTiles;
 
@@ -22,11 +23,13 @@ namespace GameLogic
         private bool _hasFinished;
         private bool _hasStuck;
 
-        public bool HasStuck => _hasStuck;
+        public event Action<Vector3, int, int> Building;
 
-        public event Action<Vector3, int, int> BuildRoad;
         public event Action<Vector3> Finished;
+
         public event Action Stuck;
+
+        public bool HasStuck => _hasStuck;
 
         public void ChangeStyle(MapStyle style)
         {
@@ -78,7 +81,7 @@ namespace GameLogic
                 if (nextTile is Finish)
                 {
                     PlaceRoad(direction, nextX, nextY);
-                    BuildRoad?.Invoke(nextTile.transform.position, _currentPosition.x, _currentPosition.y);
+                    Building?.Invoke(nextTile.transform.position, _currentPosition.x, _currentPosition.y);
 
                     Finished?.Invoke(nextTile.transform.position);
 
@@ -106,7 +109,7 @@ namespace GameLogic
             {
                 Road newRoad = Instantiate(road, new Vector3(_currentPosition.x, 0, _currentPosition.y), road.transform.rotation, transform);
                 _roadList.Add(newRoad);
-                BuildRoad?.Invoke(newRoad.transform.position, _currentPosition.x, _currentPosition.y);
+                Building?.Invoke(newRoad.transform.position, _currentPosition.x, _currentPosition.y);
 
                 _spawnedTiles[_currentPosition.x, _currentPosition.y] = newRoad;
                 _currentPosition = new Vector2Int(nextX, nextY);

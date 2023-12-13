@@ -1,18 +1,27 @@
-﻿using GameLogic;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+<<<<<<< HEAD
+=======
+using Audio;
+using GameLogic;
+>>>>>>> NewPatch
 using UnityEngine;
+using GameLogic;
 
 namespace Wanderer
 {
     [RequireComponent(typeof(PlayerAnimator))]
     internal class PlayerMover : Moveable
     {
+<<<<<<< HEAD
+        private static Vector3 Offset = new Vector3(0, 1, 0);
+
         [SerializeField] private AudioSource _audioSource;
+=======
+        [SerializeField] private StepsSound _stepsSound;
+>>>>>>> NewPatch
 
         private PlayerAnimator _animator;
 
-        private float _minPitch = 0.7f;
-        private float _maxPitch = 1.1f;
         private bool _isDead = false;
         private Queue<Vector3> _path = new Queue<Vector3>();
 
@@ -34,8 +43,11 @@ namespace Wanderer
                 Move(CanMove, _path.Dequeue());
                 _animator.Walk(CanMove);
 
-                _audioSource.pitch = Random.Range(_minPitch, _maxPitch);
+<<<<<<< HEAD
                 _audioSource.Play();
+=======
+                _stepsSound.Play();
+>>>>>>> NewPatch
             }
 
             CanMove = false;
@@ -71,7 +83,7 @@ namespace Wanderer
             Move(CanMove, startPosition);
             _path.Clear();
 
-            transform.position = startPosition + Constants.StaticVariables.Offset;
+            transform.position = startPosition + Offset;
             transform.rotation = Quaternion.identity;
         }
 

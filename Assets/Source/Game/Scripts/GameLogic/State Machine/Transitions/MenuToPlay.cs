@@ -1,5 +1,5 @@
-using UnityEngine;
 using UI;
+using UnityEngine;
 
 namespace GameLogic
 {
@@ -11,12 +11,12 @@ namespace GameLogic
         {
             NeedTransit = false;
 
-            _menuScreen.Play += OnPlay;
+            _menuScreen.PlayButtonPressed += OnPlay;
         }
 
         private void OnDisable()
         {
-            _menuScreen.Play -= OnPlay;
+            _menuScreen.PlayButtonPressed -= OnPlay;
         }
 
         private void OnPlay()

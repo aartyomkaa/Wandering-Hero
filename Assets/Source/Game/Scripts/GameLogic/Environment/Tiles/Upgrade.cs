@@ -1,28 +1,45 @@
+<<<<<<< HEAD
 using UnityEngine;
-using Wanderer;
 using UI;
+using Wanderer;
+=======
+using UI;
+using UnityEngine;
+>>>>>>> NewPatch
 
 namespace GameLogic
 {
     internal class Upgrade : InterestTile
     {
+<<<<<<< HEAD
+        private static Vector3 IndicatorOffset = new Vector3(0, 2, 0);
+
         [SerializeField] private Indicator _swordTemplate;
+=======
+        [SerializeField] private Indicator _starTemplate;
+>>>>>>> NewPatch
 
         private Camera _camera;
-        private Indicator _sword;
+        private Indicator _star;
 
         private void Start()
         {
             _camera = Camera.main;
 
-            _sword = Instantiate(_swordTemplate, transform.position + Constants.StaticVariables.IndicatorOffset, Quaternion.identity, transform);
+<<<<<<< HEAD
+            _sword = Instantiate(_swordTemplate, transform.position + IndicatorOffset, Quaternion.identity, transform);
             Vector3 direction = _camera.transform.position - _sword.transform.position;
             _sword.transform.rotation = Quaternion.LookRotation(direction);
+=======
+            _star = Instantiate(_starTemplate, transform.position + Constants.StaticVariables.IndicatorOffset, Quaternion.identity, transform);
+            Vector3 direction = _camera.transform.position - _star.transform.position;
+            _star.transform.rotation = Quaternion.LookRotation(direction);
+>>>>>>> NewPatch
         }
 
         public override void Restart()
         {
-            _sword.gameObject.SetActive(true);
+            _star.gameObject.SetActive(true);
 
             foreach (var collider in _colliders)
             {
@@ -36,7 +53,7 @@ namespace GameLogic
             {
                 collider.enabled = false;
 
-                _sword.Disappear();
+                _star.Disappear();
             }
         }
     }

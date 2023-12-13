@@ -1,7 +1,11 @@
-using UI;
-using UnityEngine;
 using System;
+using UnityEngine;
 using Agava.WebUtility;
+using UI;
+<<<<<<< HEAD
+=======
+using UnityEngine;
+>>>>>>> NewPatch
 
 namespace GameLogic
 {
@@ -13,13 +17,13 @@ namespace GameLogic
         private bool _hasPassedTutorial;
         private int _screenIndex = 0;
 
-        public Action Finished;
+        public event Action Finished;
 
         private void OnEnable()
         {
             foreach (TutorialScreen screen in _tutorialScreens)
             {
-                screen.Closed += OpenNextScreen;
+                screen.Closed += OnOpenNextScreen;
             }
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -35,7 +39,7 @@ namespace GameLogic
         {
             foreach (TutorialScreen screen in _tutorialScreens)
             {
-                screen.Closed -= OpenNextScreen;
+                screen.Closed -= OnOpenNextScreen;
             }
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -44,7 +48,7 @@ namespace GameLogic
 #endif
         }
 
-        public void OpenNextScreen()
+        public void OnOpenNextScreen()
         {
             if (_screenIndex == _tutorialScreens.Length)
             {
@@ -54,7 +58,7 @@ namespace GameLogic
             {
                 _tutorialScreens[_screenIndex].Open();
                 _screenIndex++;
-            }     
+            }
         }
 
         private void FinishTutorial()

@@ -1,6 +1,6 @@
+using UnityEngine;
 using Agava.YandexGames;
 using Lean.Localization;
-using UnityEngine;
 
 namespace YandexSDK
 {
@@ -8,7 +8,6 @@ namespace YandexSDK
     {
         private void Awake()
         {
-
 #if UNITY_WEBGL && !UNITY_EDITOR
             switch (YandexGamesSdk.Environment.i18n.lang)
             {

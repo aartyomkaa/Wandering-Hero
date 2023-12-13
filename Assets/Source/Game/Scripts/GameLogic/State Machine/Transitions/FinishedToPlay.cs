@@ -1,5 +1,5 @@
-using UnityEngine;
 using UI;
+using UnityEngine;
 
 namespace GameLogic
 {
@@ -11,14 +11,14 @@ namespace GameLogic
         {
             NeedTransit = false;
 
-            _finishedScreen.Restart += OnRestart;
-            _finishedScreen.NewGame += OnRestart;
+            _finishedScreen.RestartButtonPressed += OnRestart;
+            _finishedScreen.NewGameButtonPressed += OnRestart;
         }
 
         private void OnDisable()
         {
-            _finishedScreen.Restart -= OnRestart;
-            _finishedScreen.NewGame -= OnRestart;
+            _finishedScreen.RestartButtonPressed -= OnRestart;
+            _finishedScreen.NewGameButtonPressed -= OnRestart;
         }
 
         private void OnRestart()

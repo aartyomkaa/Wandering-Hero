@@ -10,11 +10,11 @@ namespace GameLogic
             }
             else if (y > 0)
             {
-                return RoadType.TurnLeftHorizontalLeft;
+                return RoadType.TurnRightHorizontalLeft;
             }
             else if (y < 0)
             {
-                return RoadType.TurnRightHorizontalLeft;
+                return RoadType.TurnLeftHorizontalLeft;
             }
 
             throw new System.ApplicationException();

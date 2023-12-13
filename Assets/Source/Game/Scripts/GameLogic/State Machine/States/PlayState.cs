@@ -1,5 +1,5 @@
-using UnityEngine;
 using UI;
+using UnityEngine;
 using YandexSDK;
 
 namespace GameLogic
@@ -15,14 +15,14 @@ namespace GameLogic
         {
             Init();
 
-            _playScreen.Restart += OnRestart;
+            _playScreen.RestartButtonPressed += OnRestart;
 
             _tutorialManager.Finished += OnTutorialFinish;
         }
 
         private void OnDisable()
         {
-            _playScreen.Restart -= OnRestart;
+            _playScreen.RestartButtonPressed -= OnRestart;
 
             _tutorialManager.Finished -= OnTutorialFinish;
 
@@ -33,7 +33,7 @@ namespace GameLogic
         {
             if (PlayerPrefs.GetInt(Constants.PlayerSettings.HasPassedTutorial) == 0)
             {
-                _tutorialManager.OpenNextScreen();
+                _tutorialManager.OnOpenNextScreen();
             }
             else
             {

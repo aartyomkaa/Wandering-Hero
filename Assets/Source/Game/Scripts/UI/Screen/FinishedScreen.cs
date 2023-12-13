@@ -10,9 +10,11 @@ namespace UI
         [SerializeField] private Button _newGameButton;
         [SerializeField] private Button _menuButton;
 
-        public event Action Restart;
-        public event Action NewGame;
-        public event Action Menu;
+        public event Action RestartButtonPressed;
+
+        public event Action NewGameButtonPressed;
+
+        public event Action MenuButtonPressed;
 
         private void OnEnable()
         {
@@ -31,19 +33,19 @@ namespace UI
         private void OnRestartButtonClick()
         {
             ButtonAudio.Play();
-            Restart?.Invoke();
+            RestartButtonPressed?.Invoke();
         }
 
         private void OnNewGameButtonClick()
         {
             ButtonAudio.Play();
-            NewGame?.Invoke();
+            NewGameButtonPressed?.Invoke();
         }
 
         private void OnMenuButtonClick()
         {
             ButtonAudio.Play();
-            Menu?.Invoke();
+            MenuButtonPressed?.Invoke();
         }
     }
 }

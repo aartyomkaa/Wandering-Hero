@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 using UnityEngine;
-using UI;
-using YandexSDK;
 using Audio;
+using UI;
+=======
+using Audio;
+using UI;
+using UnityEngine;
+>>>>>>> NewPatch
+using YandexSDK;
 
 namespace GameLogic
 {
@@ -18,16 +24,16 @@ namespace GameLogic
         {
             Init();
 
-            _finishedScreen.Restart += OnRestart;
-            _finishedScreen.NewGame += OnNewGame;
-            _finishedScreen.Menu += OnMenu;
+            _finishedScreen.RestartButtonPressed += OnRestart;
+            _finishedScreen.NewGameButtonPressed += OnNewGame;
+            _finishedScreen.MenuButtonPressed += OnMenu;
         }
 
         private void OnDisable()
         {
-            _finishedScreen.Restart -= OnRestart;
-            _finishedScreen.NewGame -= OnNewGame;
-            _finishedScreen.Menu -= OnMenu;
+            _finishedScreen.RestartButtonPressed -= OnRestart;
+            _finishedScreen.NewGameButtonPressed -= OnNewGame;
+            _finishedScreen.MenuButtonPressed -= OnMenu;
         }
 
         private void OnNewGame()
@@ -35,8 +41,7 @@ namespace GameLogic
             _interstitialAdShower.Show();
 
             _map.Reset();
-            _finishedScreen.Close();
-            _score.HideResult();
+            Leave();
         }
 
         private void OnRestart()
@@ -44,18 +49,14 @@ namespace GameLogic
             _videoAdShower.Show();
 
             _map.Restart();
-            _finishedScreen.Close();
-            _score.HideResult();
+            Leave();
         }
 
         private void OnMenu()
         {
-#if UNITY_WEBGL && !UNITY_EDITOR
             _interstitialAdShower.Show();
-#endif
 
-            _finishedScreen.Close();
-            _score.HideResult();
+            Leave();
         }
 
         private void Init()
@@ -63,7 +64,22 @@ namespace GameLogic
             _finishedScreen.Open();
             _score.ShowResult();
 
-            _audioPlayer.Play(_score.Value > 0);
+            if (_score.Value > 0)
+                _audioPlayer.PlayVictory();
+            else
+                _audioPlayer.PlayDefeat();
+        }
+
+        private void Leave()
+        {
+            _finishedScreen.Close();
+            _score.HideResult();
+        }
+
+        private void Leave()
+        {
+            _finishedScreen.Close();
+            _score.HideResult();
         }
     }
 }

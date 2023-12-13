@@ -2,7 +2,7 @@
 
 namespace Wanderer
 {
-    abstract class PlayerComponent : MonoBehaviour
+    internal abstract class PlayerComponent : MonoBehaviour
     {
         [SerializeField] protected AudioSource AudioSource;
 

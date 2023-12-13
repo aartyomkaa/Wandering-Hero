@@ -9,12 +9,10 @@ namespace UI
     {
         [SerializeField] private Button _closeButton;
         [SerializeField] private Button _tutorialButton;
-        [SerializeField] private Slider _levelSlider;
-        [SerializeField] private Slider _volumeSlider;
         [SerializeField] private Tutorial _tutorialManager;
         [SerializeField] private SettingsPanel _settingsPanel;
 
-        public event Action CloseScreen;
+        public event Action Closed;
 
         private void OnEnable()
         {
@@ -42,7 +40,7 @@ namespace UI
         {
             ButtonAudio.Play();
 
-            CloseScreen?.Invoke();
+            Closed?.Invoke();
         }
 
         private void OnTutorialButtonClick()
@@ -51,7 +49,7 @@ namespace UI
 
             _settingsPanel.Close();
             _tutorialManager.gameObject.SetActive(true);
-            _tutorialManager.OpenNextScreen();
+            _tutorialManager.OnOpenNextScreen();
         }
 
         private void OnTutorialFinish()

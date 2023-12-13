@@ -8,7 +8,7 @@ namespace UI
     {
         [SerializeField] private Button _close;
 
-        public Action Closed;
+        public event Action Closed;
 
         private void OnEnable()
         {
@@ -20,11 +20,10 @@ namespace UI
             _close.onClick.RemoveListener(OnClose);
         }
 
-        private void OnClose() 
-        { 
+        private void OnClose()
+        {
             Closed?.Invoke();
             Close();
         }
     }
 }
-

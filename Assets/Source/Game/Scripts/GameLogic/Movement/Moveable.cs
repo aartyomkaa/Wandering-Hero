@@ -1,18 +1,20 @@
 using System.Collections;
-using UnityEngine;
 using Constants;
+using UnityEngine;
 
 namespace GameLogic
 {
     internal class Moveable : MonoBehaviour
     {
+        private static Vector3 Offset = new Vector3(0, 1, 0);
+
         [SerializeField] private float _speed;
         [SerializeField] private float _rotationSpeed;
 
+        protected bool CanMove = false;
+
         private Coroutine _move;
         private Coroutine _rotate;
-
-        protected bool CanMove = false;
 
         protected void RotateTowards(Vector3 target)
         {
@@ -32,7 +34,7 @@ namespace GameLogic
 
         protected IEnumerator MoveTo(Vector3 targetPosition)
         {
-            targetPosition += StaticVariables.Offset;
+            targetPosition += Offset;
 
             if (CanMove != false)
                 RotateTowards(targetPosition);
@@ -52,7 +54,7 @@ namespace GameLogic
             Vector3 direction = target - transform.position;
 
             if (target.y == 0)
-                direction += StaticVariables.Offset;
+                direction += Offset;
 
             Quaternion rotation = Quaternion.LookRotation(direction);
 

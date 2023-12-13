@@ -1,7 +1,11 @@
 ﻿using System.Collections;
-using UnityEngine;
-using Wanderer;
 using Constants;
+using UnityEngine;
+<<<<<<< HEAD
+using Constants;
+=======
+>>>>>>> NewPatch
+using Wanderer;
 
 namespace NPC
 {

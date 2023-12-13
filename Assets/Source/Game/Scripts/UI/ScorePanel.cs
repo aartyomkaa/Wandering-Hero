@@ -1,10 +1,17 @@
-using UnityEngine;
-using GameLogic;
-using Wanderer;
-using Constants;
-using Agava.YandexGames;
-using Lean.Localization;
 using System;
+<<<<<<< HEAD
+using UnityEngine;
+=======
+>>>>>>> NewPatch
+using Agava.YandexGames;
+using Constants;
+using GameLogic;
+using Lean.Localization;
+<<<<<<< HEAD
+=======
+using UnityEngine;
+>>>>>>> NewPatch
+using Wanderer;
 
 namespace UI
 {
@@ -21,9 +28,9 @@ namespace UI
         private int _score;
         private int _value;
 
-        public int Value => _value;
-
         public event Action<int> ScoreChanged;
+
+        public int Value => _value;
 
         private void Start()
         {

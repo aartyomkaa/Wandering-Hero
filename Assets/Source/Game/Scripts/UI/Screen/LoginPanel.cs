@@ -1,7 +1,11 @@
-﻿using Agava.YandexGames;
-using System;
+﻿using System;
+<<<<<<< HEAD
+=======
+using Agava.YandexGames;
+>>>>>>> NewPatch
 using UnityEngine;
 using UnityEngine.UI;
+using Agava.YandexGames;
 
 namespace UI
 {
@@ -11,8 +15,9 @@ namespace UI
         [SerializeField] private Button _decline;
         [SerializeField] private ScorePanel _scorePanel;
 
-        public Action Decline;
-        public Action Accept;
+        public event Action DeclineButtonPressed;
+
+        public event Action AcceptButtonPressed;
 
         private void OnEnable()
         {
@@ -34,15 +39,15 @@ namespace UI
 
             _scorePanel.SetScore();
 
-            Accept?.Invoke();
+            AcceptButtonPressed?.Invoke();
             Close();
         }
-        
+
         private void OnDecline()
         {
             ButtonAudio.Play();
 
-            Decline?.Invoke();
+            DeclineButtonPressed?.Invoke();
             Close();
         }
     }

@@ -1,8 +1,16 @@
-using Agava.YandexGames;
-using Constants;
+<<<<<<< HEAD
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Agava.YandexGames;
+using Constants;
+=======
+using Agava.YandexGames;
+using Constants;
 using System;
+using UnityEngine;
+using UnityEngine.UI;
+>>>>>>> NewPatch
 
 namespace UI
 {
@@ -13,7 +21,7 @@ namespace UI
 
         private int _topPlayers = 5;
 
-        public Action Closed;
+        public event Action Closed;
 
         private void OnEnable()
         {
@@ -38,7 +46,7 @@ namespace UI
         {
             Leaderboard.GetEntries(StaticVariables.LeaderboardName, (result) =>
             {
-                for(int i = 0; i < _topPlayers; i++)
+                for (int i = 0; i < _topPlayers; i++)
                 {
                     _leaderboardView.Create(result.entries[i]);
                 }

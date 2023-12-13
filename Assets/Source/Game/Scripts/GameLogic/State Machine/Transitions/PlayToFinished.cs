@@ -20,7 +20,7 @@ namespace GameLogic
             NeedTransit = false;
 
             _playerInteractor.Finished += OnFinish;
-            _playerHealth.Death += OnFinish;
+            _playerHealth.Died += OnFinish;
 
             _roadBuilder.Stuck += OnFinish;
         }
@@ -28,7 +28,7 @@ namespace GameLogic
         private void OnDisable()
         {
             _playerInteractor.Finished -= OnFinish;
-            _playerHealth.Death -= OnFinish;
+            _playerHealth.Died -= OnFinish;
 
             _roadBuilder.Stuck -= OnFinish;
         }

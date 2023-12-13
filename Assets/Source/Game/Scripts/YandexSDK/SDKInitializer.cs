@@ -18,7 +18,11 @@ namespace YandexSDK
 #if UNITY_WEBGL && !UNITY_EDITOR
             yield return YandexGamesSdk.Initialize(OnInitialized);
 #endif
-            yield return(null);
+<<<<<<< HEAD
+
+=======
+>>>>>>> NewPatch
+            yield return null;
         }
 
         private void OnInitialized()

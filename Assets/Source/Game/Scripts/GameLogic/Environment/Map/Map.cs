@@ -1,5 +1,10 @@
-﻿using Wanderer;
+<<<<<<< HEAD
+﻿using UnityEngine;
+=======
+﻿using Shop;
 using UnityEngine;
+>>>>>>> NewPatch
+using Wanderer;
 
 namespace GameLogic
 {
@@ -9,7 +14,7 @@ namespace GameLogic
     {
         [SerializeField] private PlayerMover _playerMover;
         [SerializeField] private PlayerReseter _playerReseter;
-        [SerializeField] private MapStyle[] _mapStyles;
+        [SerializeField] private MapStyle _mapStyle;
 
         private MapGenerator _mapGenerator;
         private RoadBuilder _roadBuilder;
@@ -31,20 +36,34 @@ namespace GameLogic
 
         private void OnEnable()
         {
-            _roadBuilder.BuildRoad += PlaceRoad;
+<<<<<<< HEAD
+            _roadBuilder.Building += OnPlaceRoad;
+=======
+            _roadBuilder.BuildRoad += OnPlaceRoad;
+>>>>>>> NewPatch
             _roadBuilder.Finished += OnFinish;
         }
 
         private void Start()
         {
-            _roadBuilder.ChangeStyle(_mapStyles[0]);
-            _mapGenerator.ChangeStyle(_mapStyles[0]);
+            _roadBuilder.ChangeStyle(_mapStyle);
+            _mapGenerator.ChangeStyle(_mapStyle);
         }
 
         private void OnDisable()
         {
-            _roadBuilder.BuildRoad -= PlaceRoad;
+<<<<<<< HEAD
+            _roadBuilder.Building -= OnPlaceRoad;
+=======
+            _roadBuilder.BuildRoad -= OnPlaceRoad;
+>>>>>>> NewPatch
             _roadBuilder.Finished -= OnFinish;
+        }
+
+        public void ChangeStyle(MapStyle mapStyle)
+        {
+            _roadBuilder.ChangeStyle(mapStyle);
+            _mapGenerator.ChangeStyle(mapStyle);
         }
 
         public void Init(Tile[,] generatedTiles, Vector2Int mapSize)
@@ -111,7 +130,7 @@ namespace GameLogic
             _playerMover.StartMove(endPosition);
         }
 
-        private void PlaceRoad(Vector3 roadPosition, int tilePositionX, int tilePositionY)
+        private void OnPlaceRoad(Vector3 roadPosition, int tilePositionX, int tilePositionY)
         {
             if (_spawnedTiles[tilePositionX, tilePositionY] is not Finish)
                 _spawnedTiles[tilePositionX, tilePositionY].gameObject.SetActive(false);

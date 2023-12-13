@@ -1,8 +1,8 @@
 using System.Collections;
-using UnityEngine;
 using Constants;
 using GameLogic;
 using NPC;
+using UnityEngine;
 
 namespace Wanderer
 {

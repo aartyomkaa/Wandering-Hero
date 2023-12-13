@@ -1,5 +1,5 @@
-using Wanderer;
 using System;
+using Wanderer;
 
 namespace GameLogic
 {

@@ -1,4 +1,6 @@
 ﻿namespace GameLogic
 {
-    internal class Sand : MapStyle{}
+    internal class Sand : MapStyle 
+    {
+    }
 }

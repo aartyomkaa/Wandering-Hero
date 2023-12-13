@@ -11,12 +11,12 @@ namespace GameLogic
         {
             NeedTransit = false;
 
-            _playScreen.Menu += OnMenu;
+            _playScreen.MenuButtonPressed += OnMenu;
         }
 
         private void OnDisable()
         {
-            _playScreen.Menu -= OnMenu;
+            _playScreen.MenuButtonPressed -= OnMenu;
         }
 
         private void OnMenu()

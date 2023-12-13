@@ -1,7 +1,12 @@
-﻿using GameLogic;
+﻿using System;
+<<<<<<< HEAD
+=======
+using GameLogic;
 using NPC;
-using System;
+>>>>>>> NewPatch
 using UnityEngine;
+using GameLogic;
+using NPC;
 
 namespace Wanderer
 {
@@ -14,11 +19,13 @@ namespace Wanderer
 
         private int _currentHealth;
 
-        public int Health => _currentHealth;
-        public int MaxHealth => _maxHealth;
+        public event Action Died;
 
         public event Action<int> HealthChanged;
-        public event Action Death;
+
+        public int Health => _currentHealth;
+
+        public int MaxHealth => _maxHealth;
 
         private void Start()
         {
@@ -45,7 +52,7 @@ namespace Wanderer
                 {
                     AudioSource.Play();
                     RestoreHealth();
-                }   
+                }
             }
         }
 
@@ -57,7 +64,7 @@ namespace Wanderer
             if (_currentHealth == 0)
             {
                 _player.Die();
-                Death?.Invoke();
+                Died?.Invoke();
             }
         }
 

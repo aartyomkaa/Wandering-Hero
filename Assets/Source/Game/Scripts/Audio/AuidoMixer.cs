@@ -1,7 +1,8 @@
-using Constants;
 using System;
+using Constants;
 using UnityEngine;
 using UnityEngine.Audio;
+using Constants;
 
 namespace Audio
 {
@@ -11,12 +12,11 @@ namespace Audio
 
         private float _minVolume = -80;
         private float _maxVolume = 0;
-
         private bool _isMuted = false;
 
-        public bool IsMuted => _isMuted;
-
         public event Action<bool> Muted;
+
+        public bool IsMuted => _isMuted;
 
         public void ChangeVolume(float volume)
         {
@@ -69,4 +69,3 @@ namespace Audio
         }
     }
 }
-
