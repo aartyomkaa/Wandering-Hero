@@ -24,6 +24,7 @@ namespace GameLogic
 
         public virtual void Highlight()
         {
+<<<<<<< HEAD
             if (Sprite == null)
             {
                 Sprite = Instantiate(
@@ -35,6 +36,16 @@ namespace GameLogic
             else
             {
                 Sprite.gameObject.SetActive(true);
+=======
+            if (_sprite == null)
+            {
+                _sprite = Instantiate(_selectIndicator, gameObject.transform.position +
+                    Constants.StaticVariables.SelectOffset, _selectIndicator.transform.rotation, transform);
+            }
+            else
+            {
+                _sprite.gameObject.SetActive(true);
+>>>>>>> NewPatch
             }
         }
     }

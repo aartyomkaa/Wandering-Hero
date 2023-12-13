@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 using System;
 using UnityEngine;
 using Agava.WebUtility;
+=======
+using Agava.WebUtility;
+using System;
+using UnityEngine;
+>>>>>>> NewPatch
 
 namespace UI
 {

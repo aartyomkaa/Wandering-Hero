@@ -1,9 +1,16 @@
 using System;
+<<<<<<< HEAD
 using UnityEngine;
+=======
+>>>>>>> NewPatch
 using Agava.YandexGames;
 using Constants;
 using GameLogic;
 using Lean.Localization;
+<<<<<<< HEAD
+=======
+using UnityEngine;
+>>>>>>> NewPatch
 using Wanderer;
 
 namespace UI

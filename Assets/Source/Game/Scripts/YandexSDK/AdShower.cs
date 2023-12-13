@@ -1,7 +1,12 @@
 using System.Collections.Generic;
+<<<<<<< HEAD
 using UnityEngine;
 using UnityEngine.UI;
+=======
+>>>>>>> NewPatch
 using Audio;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace YandexSDK
 {
@@ -17,7 +22,10 @@ namespace YandexSDK
             Time.timeScale = 0;
 
             foreach (Button button in _adButtons)
+<<<<<<< HEAD
             {
+=======
+>>>>>>> NewPatch
                 button.interactable = false;
             }
 

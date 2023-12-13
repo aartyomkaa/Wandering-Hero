@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Audio;
+using UnityEngine;
 using UnityEngine.UI;
-using Audio;
 
 namespace UI
 {

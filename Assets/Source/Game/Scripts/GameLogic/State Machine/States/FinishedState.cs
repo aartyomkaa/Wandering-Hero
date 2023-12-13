@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 using UnityEngine;
 using Audio;
 using UI;
+=======
+using Audio;
+using UI;
+using UnityEngine;
+>>>>>>> NewPatch
 using YandexSDK;
 
 namespace GameLogic
@@ -62,6 +68,12 @@ namespace GameLogic
                 _audioPlayer.PlayVictory();
             else
                 _audioPlayer.PlayDefeat();
+        }
+
+        private void Leave()
+        {
+            _finishedScreen.Close();
+            _score.HideResult();
         }
 
         private void Leave()

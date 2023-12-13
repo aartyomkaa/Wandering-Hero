@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Shop;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,8 +15,8 @@ namespace GameLogic
         private InterestTile[] _interestTiles;
         private List<Tile> _tiles = new ();
 
-        private MapStyle _mapStyle;
         private Map _map;
+        private MapStyle _mapStyle;
         private Vector2Int _mapSize;
         private Tile[,] _spawnedTiles;
         private Level _currentLevel;
@@ -37,7 +38,9 @@ namespace GameLogic
         public void ChangeStyle(MapStyle style)
         {
             _mapStyle = style;
+            _wallsBuilder.ChangeStyle(style);
 
+            _tiles.Clear();
             _interestTiles = new InterestTile[style.GetInterestTileLenght()];
 
             for (int i = 0; i < _interestTiles.Length; i++)

@@ -1,4 +1,8 @@
 ﻿using System;
+<<<<<<< HEAD
+=======
+using Agava.YandexGames;
+>>>>>>> NewPatch
 using UnityEngine;
 using UnityEngine.UI;
 using Agava.YandexGames;

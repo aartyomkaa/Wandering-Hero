@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Agava.YandexGames;
 using Constants;
+=======
+using Agava.YandexGames;
+using Constants;
+using System;
+using UnityEngine;
+using UnityEngine.UI;
+>>>>>>> NewPatch
 
 namespace UI
 {

@@ -1,4 +1,8 @@
 ﻿using System;
+<<<<<<< HEAD
+=======
+using GameLogic;
+>>>>>>> NewPatch
 using UnityEngine;
 using GameLogic;
 

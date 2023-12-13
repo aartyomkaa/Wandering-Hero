@@ -1,7 +1,15 @@
+using Constants;
+using UnityEngine;
+
 namespace GameLogic
 {
-    internal class Grass : Tile
+    internal class Common : Tile
     {
+        private void Start()
+        {
+            gameObject.transform.localEulerAngles = StaticVariables.TileRotations[Random.Range(0, StaticVariables.TileRotations.Length)];
+        }
+
         public override void Highlight()
         {
             base.Highlight();

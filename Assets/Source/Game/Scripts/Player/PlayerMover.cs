@@ -1,4 +1,9 @@
 ﻿using System.Collections.Generic;
+<<<<<<< HEAD
+=======
+using Audio;
+using GameLogic;
+>>>>>>> NewPatch
 using UnityEngine;
 using GameLogic;
 
@@ -7,9 +12,13 @@ namespace Wanderer
     [RequireComponent(typeof(PlayerAnimator))]
     internal class PlayerMover : Moveable
     {
+<<<<<<< HEAD
         private static Vector3 Offset = new Vector3(0, 1, 0);
 
         [SerializeField] private AudioSource _audioSource;
+=======
+        [SerializeField] private StepsSound _stepsSound;
+>>>>>>> NewPatch
 
         private PlayerAnimator _animator;
 
@@ -34,7 +43,11 @@ namespace Wanderer
                 Move(CanMove, _path.Dequeue());
                 _animator.Walk(CanMove);
 
+<<<<<<< HEAD
                 _audioSource.Play();
+=======
+                _stepsSound.Play();
+>>>>>>> NewPatch
             }
 
             CanMove = false;

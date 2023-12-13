@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 using UnityEngine;
 using UI;
 using Wanderer;
+=======
+using UI;
+using UnityEngine;
+>>>>>>> NewPatch
 
 namespace GameLogic
 {

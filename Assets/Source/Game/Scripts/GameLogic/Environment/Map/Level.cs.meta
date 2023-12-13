@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3181873f4bd7a474da86489dc64d10cb
+=======
+guid: 9effb64cdc640114baacfcfad8553cad
+>>>>>>> NewPatch
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

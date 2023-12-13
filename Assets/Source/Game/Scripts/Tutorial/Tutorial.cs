@@ -2,6 +2,10 @@ using System;
 using UnityEngine;
 using Agava.WebUtility;
 using UI;
+<<<<<<< HEAD
+=======
+using UnityEngine;
+>>>>>>> NewPatch
 
 namespace GameLogic
 {

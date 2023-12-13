@@ -1,5 +1,5 @@
-using UnityEngine;
 using UI;
+using UnityEngine;
 using YandexSDK;
 
 namespace GameLogic

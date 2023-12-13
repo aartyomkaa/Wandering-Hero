@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 ﻿using UnityEngine;
 using GameLogic;
+=======
+﻿using GameLogic;
+using UnityEngine;
+>>>>>>> NewPatch
 using Wanderer;
 
 namespace NPC

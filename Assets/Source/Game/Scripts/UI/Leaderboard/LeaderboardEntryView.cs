@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 ﻿using Agava.YandexGames;
 using System.Collections;
+=======
+﻿using System.Collections;
+using Agava.YandexGames;
+using TMPro;
+>>>>>>> NewPatch
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;

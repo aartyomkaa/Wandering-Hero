@@ -1,8 +1,13 @@
 using System;
-using UnityEngine;
-using UnityEngine.UI;
 using Agava.WebUtility;
 using Background;
+using UnityEngine;
+using UnityEngine.UI;
+<<<<<<< HEAD
+using Agava.WebUtility;
+using Background;
+=======
+>>>>>>> NewPatch
 
 namespace UI
 {

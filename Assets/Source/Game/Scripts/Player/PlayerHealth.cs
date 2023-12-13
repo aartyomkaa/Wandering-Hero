@@ -1,4 +1,9 @@
 ﻿using System;
+<<<<<<< HEAD
+=======
+using GameLogic;
+using NPC;
+>>>>>>> NewPatch
 using UnityEngine;
 using GameLogic;
 using NPC;
